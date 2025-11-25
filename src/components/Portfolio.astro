@@ -10,12 +10,12 @@ const { items } = Astro.props;
 const categories = ['all', 'design', 'photography', 'video'] as const;
 ---
 
-<section id="work" class="py-20 bg-primary-darker">
+<section id="work" class="py-20 bg-neutral-100 dark:bg-neutral-900 transition-colors duration-300">
   <div class="container mx-auto px-4">
     <!-- Title -->
     <div class="text-center mb-16">
-      <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Our Work</h2>
-      <p class="text-xl text-gray">Check Out Our Projects</p>
+      <h2 class="text-4xl md:text-5xl font-bold text-neutral-800 dark:text-neutral-100 mb-4">Our Work</h2>
+      <p class="text-xl text-neutral-800 dark:text-neutral-100">Check Out Our Projects</p>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -23,11 +23,11 @@ const categories = ['all', 'design', 'photography', 'video'] as const;
       <div class="lg:col-span-3">
         <nav class="work-nav">
           <ul class="space-y-2">
-            <li class="text-white font-semibold mb-4">Type of Work</li>
+            <li class="text-neutral-800 dark:text-neutral-100 font-semibold mb-4">Type of Work</li>
             {categories.map((category) => (
               <li>
                 <button
-                  class={`filter-btn w-full text-left px-4 py-2 rounded transition-colors ${category === 'all' ? 'bg-primary text-white' : 'text-gray hover:text-white hover:bg-primary-dark'}`}
+                  class={`filter-btn w-full text-left px-4 py-2 rounded transition-colors ${category === 'all' ? 'bg-primary text-white' : 'text-neutral-800 dark:text-neutral-100 hover:text-white hover:bg-primary dark:hover:bg-neutral-950'}`}
                   data-filter={category}
                 >
                   {category === 'all' ? 'All Projects' : category.charAt(0).toUpperCase() + category.slice(1)}
@@ -61,7 +61,7 @@ const categories = ['all', 'design', 'photography', 'video'] as const;
                     <p class="text-sm mb-4">{item.description}</p>
                     {item.fullImage && (
                       <button
-                        class="portfolio-view bg-white text-primary px-6 py-2 rounded transition-colors"
+                        class="portfolio-view bg-neutral-50 text-primary px-6 py-2 rounded transition-colors"
                         data-image={item.fullImage}
                         data-title={item.title}
                         data-description={item.description}
@@ -74,7 +74,7 @@ const categories = ['all', 'design', 'photography', 'video'] as const;
                         href={item.videoUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="inline-block bg-white text-primary px-6 py-2 rounded hover:bg-gray-100 transition-colors"
+                        class="inline-block bg-neutral-50 text-primary px-6 py-2 rounded hover:bg-gray-100 transition-colors"
                       >
                         Watch Video
                       </a>
@@ -103,7 +103,7 @@ const categories = ['all', 'design', 'photography', 'video'] as const;
     <img id="lightbox-image" src="" alt="" class="w-full h-auto rounded-lg shadow-2xl" />
     <div id="lightbox-content" class="text-center mt-4 text-white">
       <h3 id="lightbox-title" class="text-2xl font-bold mb-2"></h3>
-      <p id="lightbox-description" class="text-gray"></p>
+      <p id="lightbox-description" class="text-gray-400"></p>
     </div>
   </div>
 </div>
@@ -136,12 +136,11 @@ const categories = ['all', 'design', 'photography', 'video'] as const;
 
       // Update active button
       filterButtons.forEach(btn => {
-        btn.classList.remove('bg-primary', 'text-white');
-        btn.classList.add('text-gray', 'hover:text-white', 'hover:bg-primary-dark');
+        btn.classList.remove('bg-primary', 'text-neutral-100');
+        btn.classList.add('text-neutral-800', 'hover:text-neutral-100', 'hover:bg-neutral-950');
       });
-      button.classList.add('bg-primary', 'text-white');
-      button.classList.remove('text-gray', 'hover:text-white', 'hover:bg-primary-dark');
-
+      button.classList.add('bg-primary', 'text-neutral-100');
+      button.classList.remove('text-neutral-800', 'hover:text-neutral-100', 'hover:bg-neutral-950');
       // Get positions before filtering
       const oldPositions = getItemPositions();
 

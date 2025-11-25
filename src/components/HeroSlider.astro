@@ -10,7 +10,10 @@ const { slides } = Astro.props;
 
 <section id="home-slider" class="relative h-screen overflow-hidden">
     <!-- Overlay -->
-    <div class="absolute inset-0 bg-primary-dark opacity-70 z-10"></div>
+    <div
+        class="absolute inset-0 bg-neutral-50 dark:bg-neutral-950 opacity-70 z-10"
+    >
+    </div>
 
     <!-- Slides -->
     <div class="slider-container absolute inset-0">
@@ -54,17 +57,17 @@ const { slides } = Astro.props;
 
     <!-- Controls -->
     <div
-        class="absolute bottom-0 left-0 right-0 h-12 bg-primary-darker z-30 flex items-center justify-between"
+        class="absolute bottom-0 left-0 right-0 h-12 bg-neutral-50 dark:bg-neutral-900 z-30 flex items-center justify-between transition-colors duration-300"
     >
         <!-- Navigation Arrows -->
         <div class="flex">
             <button
                 id="prev-slide"
-                class="w-12 h-12 bg-primary-dark hover:bg-primary transition-colors flex items-center justify-center"
+                class="w-12 h-12 bg-neutral-200 dark:bg-neutral-950 hover:bg-primary dark:hover:bg-primary transition-colors flex items-center justify-center"
                 aria-label="Previous slide"
             >
                 <svg
-                    class="w-4 h-4 text-white"
+                    class="w-4 h-4 text-neutral-950 dark:text-neutral-50"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -78,11 +81,11 @@ const { slides } = Astro.props;
             </button>
             <button
                 id="next-slide"
-                class="w-12 h-12 bg-primary-dark hover:bg-primary transition-colors flex items-center justify-center ml-1"
+                class="w-12 h-12 bg-neutral-200 dark:bg-neutral-950 hover:bg-primary dark:hover:bg-primary transition-colors flex items-center justify-center ml-1"
                 aria-label="Next slide"
             >
                 <svg
-                    class="w-4 h-4 text-white"
+                    class="w-4 h-4 text-neutral-950 dark:text-neutral-50"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -102,7 +105,7 @@ const { slides } = Astro.props;
                 slides.map((_, index) => (
                     <li>
                         <button
-                            class={`slide-indicator w-3 h-3 rounded-sm transition-colors ${index === 0 ? "bg-primary" : "bg-gray-light hover:bg-white"}`}
+                            class={`slide-indicator w-3 h-3 rounded-sm transition-colors ${index === 0 ? "bg-primary" : "bg-neutral-200 dark:bg-neutral-800 hover:bg-neutral-800 dark:hover:bg-neutral-200"}`}
                             data-slide={index}
                             aria-label={`Go to slide ${index + 1}`}
                         />
@@ -114,11 +117,11 @@ const { slides } = Astro.props;
         <!-- Next Section Arrow -->
         <a
             href="#work"
-            class="w-12 h-12 bg-primary-dark hover:bg-primary transition-colors flex items-center justify-center"
+            class="w-12 h-12 bg-neutral-200 dark:bg-neutral-950 hover:bg-primary dark:hover:bg-primary transition-colors flex items-center justify-center"
             aria-label="Scroll to next section"
         >
             <svg
-                class="w-4 h-4 text-white"
+                class="w-4 h-4 text-neutral-950 dark:text-neutral-50"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -224,10 +227,20 @@ const { slides } = Astro.props;
         // Update indicators
         indicators.forEach((indicator, i) => {
             if (i === index) {
-                indicator.classList.remove("bg-gray-light", "hover:bg-white");
+                indicator.classList.remove(
+                    "bg-neutral-200",
+                    "dark:bg-neutral-800",
+                    "hover:bg-neutral-800",
+                    "dark:hover:bg-neutral-200",
+                );
                 indicator.classList.add("bg-primary");
             } else {
-                indicator.classList.add("bg-gray-light", "hover:bg-white");
+                indicator.classList.add(
+                    "bg-neutral-200",
+                    "dark:bg-neutral-800",
+                    "hover:bg-neutral-800",
+                    "dark:hover:bg-neutral-200",
+                );
                 indicator.classList.remove("bg-primary");
             }
         });

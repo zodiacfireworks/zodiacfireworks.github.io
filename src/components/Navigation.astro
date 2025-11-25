@@ -12,7 +12,7 @@ const { navItems } = Astro.props;
 <div id="nav-container" class="relative z-50">
     <nav
         id="main-nav"
-        class="bg-primary-dark transition-all duration-300 w-full"
+        class="bg-neutral-200 dark:bg-neutral-950 transition-all duration-300 w-full shadow-sm dark:shadow-none"
     >
         <div class="container mx-auto px-4">
             <div class="flex items-center justify-between py-4">
@@ -20,7 +20,7 @@ const { navItems } = Astro.props;
                 <div id="logo">
                     <a
                         href="#home-slider"
-                        class="text-white text-2xl font-semibold hover:text-primary transition-colors"
+                        class="text-neutral-900 dark:text-neutral-100 text-2xl font-semibold dark:hover:text-primary transition-colors"
                     >
                         Martin Vuelta
                     </a>
@@ -29,17 +29,17 @@ const { navItems } = Astro.props;
                 <!-- Mobile Menu Toggle -->
                 <button
                     id="mobile-nav"
-                    class="lg:hidden text-white text-2xl focus:outline-none w-6 h-6 relative flex flex-col justify-between items-start"
+                    class="lg:hidden text-neutral-800 dark:text-neutral-100 dark:hover:text-primary hover:text-primary text-2xl focus:outline-none w-6 h-6 relative flex flex-col justify-between items-start"
                     aria-label="Toggle menu"
                 >
                     <span
-                        class="hamburger-line block w-6 h-0.5 bg-white transition-all duration-300 ease-in-out origin-top-left"
+                        class="hamburger-line block w-6 h-0.5 bg-neutral-800 dark:bg-neutral-100 transition-all duration-300 ease-in-out origin-top-left"
                     ></span>
                     <span
-                        class="hamburger-line block w-6 h-0.5 bg-white transition-all duration-300 ease-in-out"
+                        class="hamburger-line block w-6 h-0.5 bg-neutral-800 dark:bg-neutral-100 transition-all duration-300 ease-in-out"
                     ></span>
                     <span
-                        class="hamburger-line block w-6 h-0.5 bg-white transition-all duration-300 ease-in-out origin-bottom-left"
+                        class="hamburger-line block w-6 h-0.5 bg-neutral-800 dark:bg-neutral-100 transition-all duration-300 ease-in-out origin-bottom-left"
                     ></span>
                 </button>
 
@@ -50,7 +50,7 @@ const { navItems } = Astro.props;
                             <li>
                                 <a
                                     href={item.href}
-                                    class="nav-link text-gray hover:text-primary transition-colors font-normal uppercase"
+                                    class="nav-link text-neutral-800 dark:text-neutral-100 dark:hover:text-primary hover:text-primary transition-colors font-normal uppercase"
                                     data-external={item.external}
                                 >
                                     {item.label}
@@ -67,14 +67,14 @@ const { navItems } = Astro.props;
                 class="lg:hidden overflow-hidden transition-all duration-300 ease-in-out"
                 style="max-height: 0; opacity: 0;"
             >
-                <div class="pb-4">
-                    <ul class="space-y-3">
+                <div>
+                    <ul>
                         {
                             navItems.map((item) => (
-                                <li>
+                                <li class="px-4 py-4">
                                     <a
                                         href={item.href}
-                                        class="nav-link block text-center text-gray hover:text-primary transition-colors font-normal uppercase"
+                                        class="nav-link block text-center text-neutral-800 dark:text-neutral-100 dark:hover:text-primary hover:text-primary transition-colors font-normal uppercase"
                                         data-external={item.external}
                                     >
                                         {item.label}
@@ -204,10 +204,18 @@ const { navItems } = Astro.props;
             ) {
                 navLinks.forEach((link) => {
                     link.classList.remove("text-primary");
-                    link.classList.add("text-gray");
+                    link.classList.add(
+                        "text-neutral-800",
+                        "dark:text-neutral-100",
+                        "hover:text-primary",
+                    );
 
                     if (link.getAttribute("href") === `#${sectionId}`) {
-                        link.classList.remove("text-gray");
+                        link.classList.remove(
+                            "text-neutral-800",
+                            "dark:text-neutral-100",
+                            "hover:text-primary",
+                        );
                         link.classList.add("text-primary");
                     }
                 });

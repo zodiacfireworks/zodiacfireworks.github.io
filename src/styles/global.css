@@ -20,15 +20,15 @@
     }
 
     ::-webkit-scrollbar-track {
-        @apply bg-primary-darker;
+        @apply bg-neutral-50 dark:bg-neutral-950;
     }
 
     ::-webkit-scrollbar-thumb {
-        @apply bg-primary rounded;
+        @apply bg-neutral-200 dark:bg-neutral-800 rounded;
     }
 
     ::-webkit-scrollbar-thumb:hover {
-        @apply bg-primary-dark;
+        @apply bg-primary;
     }
 
     /* Selection color */
@@ -42,6 +42,6 @@
     }
 
     *:focus-visible {
-        @apply ring-2 ring-primary ring-offset-2 ring-offset-primary-darker;
+        @apply ring-2 ring-primary ring-offset-2 ring-offset-white dark:ring-offset-neutral-950;
     }
 }
