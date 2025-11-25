@@ -152,14 +152,14 @@
         e.preventDefault();
 
         const formData = new FormData(contactForm);
-        const data = {
-            name: formData.get("name"),
-            email: formData.get("email"),
-            message: formData.get("message"),
-        };
+        // In a real implementation, you would send this data to an API endpoint:
+        // const data = {
+        //     name: formData.get("name"),
+        //     email: formData.get("email"),
+        //     message: formData.get("message"),
+        // };
 
         try {
-            // In a real implementation, you would send this to an API endpoint
             // For now, we'll just show a success message
 
             // Simulate API call

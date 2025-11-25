@@ -133,7 +133,7 @@ const { slides } = Astro.props;
     </div>
 </section>
 
-<script define:vars={{ slides }}>
+<script define:vars={{ slides }} is:inline>
     let currentSlide = 0;
     let direction = 1; // 1 for forward, -1 for backward
     const slideElements = document.querySelectorAll(".slide");

@@ -11,7 +11,6 @@ interface Props {
 const {
     title = "Martin Vuelta | Software Developer",
     description = "Personal portfolio showcasing projects, skills, and experiences",
-    navItems,
 } = Astro.props;
 ---
 
@@ -78,7 +77,7 @@ const {
         <script>
             // Smooth scroll for anchor links
             document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-                anchor.addEventListener("click", function (e) {
+                anchor.addEventListener("click", function (this: HTMLElement, e) {
                     const href = this.getAttribute("href");
                     if (href && href !== "#") {
                         e.preventDefault();
