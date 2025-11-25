@@ -1,0 +1,117 @@
+---
+import type { NavItem } from "../types";
+import "../styles/global.css";
+
+interface Props {
+    title?: string;
+    description?: string;
+    navItems: NavItem[];
+}
+
+const {
+    title = "Martin Vuelta | Software Developer",
+    description = "Personal portfolio showcasing projects, skills, and experiences",
+    navItems,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content={description} />
+        <meta name="generator" content={Astro.generator} />
+
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap"
+            rel="stylesheet"
+        />
+
+        <title>{title}</title>
+    </head>
+    <body class="bg-primary-darker text-gray font-light text-base leading-7">
+        <!-- Main Content -->
+        <main>
+            <slot />
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-primary-dark py-8 text-center">
+            <p class="text-gray">
+                &copy; {new Date().getFullYear()} Martin Vuelta.
+                <a
+                    href="https://github.com/zodiacfireworks"
+                    class="text-primary hover:text-white transition-colors"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    zodiacfireworks
+                </a>
+            </p>
+        </footer>
+
+        <!-- Back to Top -->
+        <a
+            id="back-to-top"
+            href="#home-slider"
+            class="fixed bottom-8 right-8 bg-primary-dark hover:bg-primary text-white w-12 h-12 rounded-md flex items-center justify-center opacity-0 invisible transition-all duration-300 z-40"
+            aria-label="Back to top"
+        >
+            <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 15l7-7 7 7"></path>
+            </svg>
+        </a>
+
+        <script>
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+                anchor.addEventListener("click", function (e) {
+                    const href = this.getAttribute("href");
+                    if (href && href !== "#") {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            const headerOffset = 80;
+                            const elementPosition =
+                                target.getBoundingClientRect().top;
+                            const offsetPosition =
+                                elementPosition +
+                                window.pageYOffset -
+                                headerOffset;
+
+                            window.scrollTo({
+                                top: offsetPosition,
+                                behavior: "smooth",
+                            });
+                        }
+                    }
+                });
+            });
+
+            // Back to top button
+            const backToTop = document.getElementById("back-to-top");
+            window.addEventListener("scroll", () => {
+                if (window.pageYOffset > 500) {
+                    backToTop?.classList.remove("opacity-0", "invisible");
+                    backToTop?.classList.add("opacity-100", "visible");
+                } else {
+                    backToTop?.classList.add("opacity-0", "invisible");
+                    backToTop?.classList.remove("opacity-100", "visible");
+                }
+            });
+        </script>
+    </body>
+</html>

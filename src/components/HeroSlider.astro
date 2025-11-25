@@ -1,0 +1,384 @@
+---
+import type { SlideItem } from "../types";
+
+interface Props {
+    slides: SlideItem[];
+}
+
+const { slides } = Astro.props;
+---
+
+<section id="home-slider" class="relative h-screen overflow-hidden">
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-primary-dark opacity-70 z-10"></div>
+
+    <!-- Slides -->
+    <div class="slider-container absolute inset-0">
+        {
+            slides.map((slide, index) => (
+                <div
+                    class={`slide absolute inset-0 transition-all duration-1000 ease-in-out ${index === 0 ? "opacity-100 translate-x-0 z-[1]" : "opacity-0 translate-x-full z-0"}`}
+                    data-slide={index}
+                >
+                    <img
+                        src={slide.image}
+                        alt={slide.title}
+                        class="w-full h-full object-cover"
+                    />
+                </div>
+            ))
+        }
+    </div>
+
+    <!-- Slide Content -->
+    <div class="absolute inset-0 z-20 flex items-center justify-center">
+        <div class="text-center text-white px-4">
+            <h1
+                id="slide-title"
+                class="text-5xl md:text-7xl font-bold mb-4 uppercase tracking-tight transition-all duration-700 ease-out"
+            >
+                {slides[0].title}
+            </h1>
+            {
+                slides[0].description && (
+                    <p
+                        id="slide-description"
+                        class="text-xl md:text-2xl font-light transition-all duration-700 ease-out"
+                    >
+                        {slides[0].description}
+                    </p>
+                )
+            }
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <div
+        class="absolute bottom-0 left-0 right-0 h-12 bg-primary-darker z-30 flex items-center justify-between"
+    >
+        <!-- Navigation Arrows -->
+        <div class="flex">
+            <button
+                id="prev-slide"
+                class="w-12 h-12 bg-primary-dark hover:bg-primary transition-colors flex items-center justify-center"
+                aria-label="Previous slide"
+            >
+                <svg
+                    class="w-4 h-4 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M15 19l-7-7 7-7"></path>
+                </svg>
+            </button>
+            <button
+                id="next-slide"
+                class="w-12 h-12 bg-primary-dark hover:bg-primary transition-colors flex items-center justify-center ml-1"
+                aria-label="Next slide"
+            >
+                <svg
+                    class="w-4 h-4 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 5l7 7-7 7"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Slide Indicators -->
+        <ul id="slide-list" class="flex space-x-3">
+            {
+                slides.map((_, index) => (
+                    <li>
+                        <button
+                            class={`slide-indicator w-3 h-3 rounded-sm transition-colors ${index === 0 ? "bg-primary" : "bg-gray-light hover:bg-white"}`}
+                            data-slide={index}
+                            aria-label={`Go to slide ${index + 1}`}
+                        />
+                    </li>
+                ))
+            }
+        </ul>
+
+        <!-- Next Section Arrow -->
+        <a
+            href="#work"
+            class="w-12 h-12 bg-primary-dark hover:bg-primary transition-colors flex items-center justify-center"
+            aria-label="Scroll to next section"
+        >
+            <svg
+                class="w-4 h-4 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"></path>
+            </svg>
+        </a>
+    </div>
+</section>
+
+<script define:vars={{ slides }}>
+    let currentSlide = 0;
+    let direction = 1; // 1 for forward, -1 for backward
+    const slideElements = document.querySelectorAll(".slide");
+    const indicators = document.querySelectorAll(".slide-indicator");
+    const titleElement = document.getElementById("slide-title");
+    const descriptionElement = document.getElementById("slide-description");
+
+    function showSlide(index, slideDirection = 1) {
+        direction = slideDirection;
+
+        // Update slides with slide-in/slide-out animation
+        slideElements.forEach((slide, i) => {
+            // Remove all transitions temporarily for repositioning
+            slide.style.transition = "none";
+
+            if (i === index) {
+                // New slide coming in - position it off-screen first
+                slide.classList.remove("opacity-0", "z-0");
+                slide.classList.add("z-[1]");
+
+                if (direction > 0) {
+                    // Position slide off-screen to the right
+                    slide.classList.remove(
+                        "translate-x-0",
+                        "-translate-x-full",
+                    );
+                    slide.classList.add("translate-x-full", "opacity-100");
+                } else {
+                    // Position slide off-screen to the left
+                    slide.classList.remove("translate-x-0", "translate-x-full");
+                    slide.classList.add("-translate-x-full", "opacity-100");
+                }
+
+                // Force reflow
+                void slide.offsetWidth;
+
+                // Re-enable transitions and slide in
+                slide.style.transition = "";
+                requestAnimationFrame(() => {
+                    slide.classList.remove(
+                        "translate-x-full",
+                        "-translate-x-full",
+                    );
+                    slide.classList.add("translate-x-0");
+                });
+            } else if (i === currentSlide) {
+                // Current slide going out
+                slide.classList.remove("z-[1]");
+                slide.classList.add("z-0");
+
+                // Re-enable transitions
+                slide.style.transition = "";
+
+                if (direction > 0) {
+                    // Sliding out to left
+                    slide.classList.remove("translate-x-0", "translate-x-full");
+                    slide.classList.add("-translate-x-full", "opacity-0");
+                } else {
+                    // Sliding out to right
+                    slide.classList.remove(
+                        "translate-x-0",
+                        "-translate-x-full",
+                    );
+                    slide.classList.add("translate-x-full", "opacity-0");
+                }
+            } else {
+                // Other slides: position them correctly for future transitions
+                slide.classList.remove("opacity-100", "z-[1]");
+                slide.classList.add("opacity-0", "z-0");
+
+                // Position slides based on their relation to current index
+                const distance = (i - index + slides.length) % slides.length;
+                if (distance <= slides.length / 2) {
+                    // Slide is ahead - position to the right
+                    slide.classList.remove(
+                        "-translate-x-full",
+                        "translate-x-0",
+                    );
+                    slide.classList.add("translate-x-full");
+                } else {
+                    // Slide is behind - position to the left
+                    slide.classList.remove("translate-x-full", "translate-x-0");
+                    slide.classList.add("-translate-x-full");
+                }
+            }
+        });
+
+        // Update indicators
+        indicators.forEach((indicator, i) => {
+            if (i === index) {
+                indicator.classList.remove("bg-gray-light", "hover:bg-white");
+                indicator.classList.add("bg-primary");
+            } else {
+                indicator.classList.add("bg-gray-light", "hover:bg-white");
+                indicator.classList.remove("bg-primary");
+            }
+        });
+
+        // Animate text content with horizontal slide
+        if (titleElement) {
+            titleElement.style.opacity = "0";
+            if (direction > 0) {
+                titleElement.style.transform = "translateX(-30px)";
+            } else {
+                titleElement.style.transform = "translateX(30px)";
+            }
+        }
+        if (descriptionElement) {
+            descriptionElement.style.opacity = "0";
+            if (direction > 0) {
+                descriptionElement.style.transform = "translateX(-30px)";
+            } else {
+                descriptionElement.style.transform = "translateX(30px)";
+            }
+        }
+
+        // Update text content after fade out
+        setTimeout(() => {
+            if (titleElement) titleElement.textContent = slides[index].title;
+            if (descriptionElement && slides[index].description) {
+                descriptionElement.textContent = slides[index].description;
+            }
+
+            // Reset position for slide-in from opposite direction
+            if (titleElement) {
+                if (direction > 0) {
+                    titleElement.style.transform = "translateX(30px)";
+                } else {
+                    titleElement.style.transform = "translateX(-30px)";
+                }
+            }
+            if (descriptionElement) {
+                if (direction > 0) {
+                    descriptionElement.style.transform = "translateX(30px)";
+                } else {
+                    descriptionElement.style.transform = "translateX(-30px)";
+                }
+            }
+
+            // Animate text content in
+            setTimeout(() => {
+                if (titleElement) {
+                    titleElement.style.opacity = "1";
+                    titleElement.style.transform = "translateX(0)";
+                }
+                if (descriptionElement) {
+                    descriptionElement.style.opacity = "1";
+                    descriptionElement.style.transform = "translateX(0)";
+                }
+            }, 50);
+        }, 400);
+
+        currentSlide = index;
+    }
+
+    // Auto-advance slides
+    let autoAdvance = setInterval(() => {
+        const newIndex =
+            currentSlide === slides.length - 1 ? 0 : currentSlide + 1;
+        showSlide(newIndex, 1);
+    }, 8000);
+
+    // Function to reset auto-advance timer
+    function resetAutoAdvance() {
+        clearInterval(autoAdvance);
+        autoAdvance = setInterval(() => {
+            const newIndex =
+                currentSlide === slides.length - 1 ? 0 : currentSlide + 1;
+            showSlide(newIndex, 1);
+        }, 8000);
+    }
+
+    // Previous slide
+    document.getElementById("prev-slide")?.addEventListener("click", () => {
+        const newIndex =
+            currentSlide === 0 ? slides.length - 1 : currentSlide - 1;
+        showSlide(newIndex, -1);
+        resetAutoAdvance();
+    });
+
+    // Next slide
+    document.getElementById("next-slide")?.addEventListener("click", () => {
+        const newIndex =
+            currentSlide === slides.length - 1 ? 0 : currentSlide + 1;
+        showSlide(newIndex, 1);
+        resetAutoAdvance();
+    });
+
+    // Indicator clicks
+    indicators.forEach((indicator, index) => {
+        indicator.addEventListener("click", () => {
+            // Handle circular direction for wrap-around
+            let slideDirection;
+            if (index > currentSlide) {
+                slideDirection = 1;
+            } else if (index < currentSlide) {
+                slideDirection = -1;
+            } else {
+                return; // Same slide, do nothing
+            }
+
+            // Check if wrapping around would be shorter
+            const forwardDistance =
+                index > currentSlide
+                    ? index - currentSlide
+                    : slides.length - currentSlide + index;
+            const backwardDistance =
+                index < currentSlide
+                    ? currentSlide - index
+                    : currentSlide + (slides.length - index);
+
+            // Use the shorter path for circular navigation
+            if (backwardDistance < forwardDistance) {
+                slideDirection = -1;
+            } else if (forwardDistance < backwardDistance) {
+                slideDirection = 1;
+            }
+
+            showSlide(index, slideDirection);
+            resetAutoAdvance();
+        });
+    });
+
+    // Pause on hover
+    const sliderContainer = document.querySelector(".slider-container");
+    sliderContainer?.addEventListener("mouseenter", () => {
+        clearInterval(autoAdvance);
+    });
+
+    sliderContainer?.addEventListener("mouseleave", () => {
+        resetAutoAdvance();
+    });
+
+    // Keyboard navigation
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowLeft") {
+            const newIndex =
+                currentSlide === 0 ? slides.length - 1 : currentSlide - 1;
+            showSlide(newIndex, -1);
+            resetAutoAdvance();
+        } else if (e.key === "ArrowRight") {
+            const newIndex =
+                currentSlide === slides.length - 1 ? 0 : currentSlide + 1;
+            showSlide(newIndex, 1);
+            resetAutoAdvance();
+        }
+    });
+</script>

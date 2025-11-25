@@ -1,0 +1,193 @@
+---
+// Contact form component
+---
+
+<section id="contact" class="py-20 bg-primary-darker">
+    <div class="container mx-auto px-4">
+        <!-- Title -->
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">
+                Get in Touch
+            </h2>
+            <p class="text-xl text-gray">
+                We're currently accepting new client projects. We look forward
+                to serving you.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Contact Form -->
+            <div class="lg:col-span-2">
+                <form id="contact-form" class="space-y-6">
+                    <div>
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Full Name"
+                            required
+                            class="w-full px-4 py-3 bg-primary-dark border border-gray-dark text-white placeholder-gray rounded focus:outline-none focus:border-primary transition-colors"
+                        />
+                    </div>
+
+                    <div>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Email Address"
+                            required
+                            class="w-full px-4 py-3 bg-primary-dark border border-gray-dark text-white placeholder-gray rounded focus:outline-none focus:border-primary transition-colors"
+                        />
+                    </div>
+
+                    <div>
+                        <textarea
+                            id="message"
+                            name="message"
+                            rows="8"
+                            placeholder="Your Message"
+                            required
+                            class="w-full px-4 py-3 bg-primary-dark border border-gray-dark text-white placeholder-gray rounded focus:outline-none focus:border-primary transition-colors resize-none"
+                        ></textarea>
+                    </div>
+
+                    <div>
+                        <button
+                            type="submit"
+                            class="bg-primary hover:bg-primary-dark text-white font-semibold px-8 py-3 rounded transition-colors"
+                        >
+                            Send Your Email
+                        </button>
+                    </div>
+
+                    <!-- Response message -->
+                    <div id="response" class="hidden mt-4"></div>
+                </form>
+            </div>
+
+            <!-- Contact Details -->
+            <div class="lg:col-span-1">
+                <div class="bg-primary-dark p-8 rounded-lg">
+                    <h3 class="text-2xl font-bold text-white mb-6">
+                        Contact Details
+                    </h3>
+                    <ul class="space-y-4 text-gray">
+                        <li class="flex items-start">
+                            <svg
+                                class="w-6 h-6 text-primary mr-3 mt-1 flex-shrink-0"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                                ></path>
+                            </svg>
+                            <a
+                                href="mailto:hello@martinvuelta.com"
+                                class="hover:text-white transition-colors"
+                            >
+                                hello@martinvuelta.com
+                            </a>
+                        </li>
+                        <li class="flex items-start">
+                            <svg
+                                class="w-6 h-6 text-primary mr-3 mt-1 flex-shrink-0"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                                ></path>
+                            </svg>
+                            <span>(916) 375-2525</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg
+                                class="w-6 h-6 text-primary mr-3 mt-1 flex-shrink-0"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                                ></path>
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <div>
+                                <p>Martin Vuelta Studio</p>
+                                <p>5240 Vanish Island, 105</p>
+                                <p>Unknown</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const contactForm = document.getElementById(
+        "contact-form",
+    ) as HTMLFormElement;
+    const responseDiv = document.getElementById("response");
+
+    contactForm?.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(contactForm);
+        const data = {
+            name: formData.get("name"),
+            email: formData.get("email"),
+            message: formData.get("message"),
+        };
+
+        try {
+            // In a real implementation, you would send this to an API endpoint
+            // For now, we'll just show a success message
+
+            // Simulate API call
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+
+            if (responseDiv) {
+                responseDiv.innerHTML = `
+          <div class="bg-green-500 text-white px-4 py-3 rounded">
+            <strong>Success!</strong> Your message has been sent. We'll get back to you soon.
+          </div>
+        `;
+                responseDiv.classList.remove("hidden");
+                contactForm.reset();
+
+                // Hide message after 5 seconds
+                setTimeout(() => {
+                    responseDiv.classList.add("hidden");
+                }, 5000);
+            }
+        } catch (error) {
+            if (responseDiv) {
+                responseDiv.innerHTML = `
+          <div class="bg-red-500 text-white px-4 py-3 rounded">
+            <strong>Error!</strong> There was a problem sending your message. Please try again.
+          </div>
+        `;
+                responseDiv.classList.remove("hidden");
+            }
+        }
+    });
+</script>

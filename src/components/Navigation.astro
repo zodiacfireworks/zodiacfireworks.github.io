@@ -1,0 +1,188 @@
+---
+import type { NavItem } from "../types";
+
+interface Props {
+    navItems: NavItem[];
+}
+
+const { navItems } = Astro.props;
+---
+
+<!-- Navigation Section -->
+<div id="nav-container" class="relative z-50">
+    <nav
+        id="main-nav"
+        class="bg-primary-dark transition-all duration-300 w-full"
+    >
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between py-4">
+                <!-- Logo -->
+                <div id="logo">
+                    <a
+                        href="#home-slider"
+                        class="text-white text-2xl font-semibold hover:text-primary transition-colors"
+                    >
+                        Martin Vuelta
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Toggle -->
+                <button
+                    id="mobile-nav"
+                    class="lg:hidden text-white text-2xl focus:outline-none w-6 h-6 relative flex flex-col justify-between items-start"
+                    aria-label="Toggle menu"
+                >
+                    <span
+                        class="hamburger-line block w-6 h-0.5 bg-white transition-all duration-300 ease-in-out origin-top-left"
+                    ></span>
+                    <span
+                        class="hamburger-line block w-6 h-0.5 bg-white transition-all duration-300 ease-in-out"
+                    ></span>
+                    <span
+                        class="hamburger-line block w-6 h-0.5 bg-white transition-all duration-300 ease-in-out origin-bottom-left"
+                    ></span>
+                </button>
+
+                <!-- Desktop Navigation -->
+                <ul id="menu" class="hidden lg:flex space-x-8">
+                    {
+                        navItems.map((item) => (
+                            <li>
+                                <a
+                                    href={item.href}
+                                    class="text-gray hover:text-primary transition-colors font-normal uppercase"
+                                    data-external={item.external}
+                                >
+                                    {item.label}
+                                </a>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div
+                id="mobile-menu"
+                class="lg:hidden overflow-hidden transition-all duration-300 ease-in-out"
+                style="max-height: 0; opacity: 0;"
+            >
+                <div class="pb-4">
+                    <ul class="space-y-3">
+                        {
+                            navItems.map((item) => (
+                                <li>
+                                    <a
+                                        href={item.href}
+                                        class="block text-center text-gray hover:text-primary transition-colors font-normal uppercase"
+                                        data-external={item.external}
+                                    >
+                                        {item.label}
+                                    </a>
+                                </li>
+                            ))
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<script>
+    // Mobile menu toggle
+    const mobileNavBtn = document.getElementById("mobile-nav");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const hamburgerLines =
+        mobileNavBtn?.querySelectorAll<HTMLElement>(".hamburger-line");
+
+    let isMenuOpen = false;
+
+    mobileNavBtn?.addEventListener("click", () => {
+        isMenuOpen = !isMenuOpen;
+
+        if (mobileMenu) {
+            if (isMenuOpen) {
+                // Open menu: slide down
+                mobileMenu.style.maxHeight = mobileMenu.scrollHeight + "px";
+                mobileMenu.style.opacity = "1";
+            } else {
+                // Close menu: slide up
+                mobileMenu.style.maxHeight = "0";
+                mobileMenu.style.opacity = "0";
+            }
+        }
+
+        // Animate hamburger to X
+        if (hamburgerLines) {
+            if (isMenuOpen) {
+                // Open: hamburger to X
+                hamburgerLines[0].style.transform =
+                    "rotate(45deg) scaleX(1.414)";
+                hamburgerLines[1].style.opacity = "0";
+                hamburgerLines[1].style.transform = "scaleX(0)";
+                hamburgerLines[2].style.transform =
+                    "rotate(-45deg) scaleX(1.414)";
+            } else {
+                // Close: X to hamburger
+                hamburgerLines[0].style.transform = "rotate(0) scaleX(1)";
+                hamburgerLines[1].style.opacity = "1";
+                hamburgerLines[1].style.transform = "scaleX(1)";
+                hamburgerLines[2].style.transform = "rotate(0) scaleX(1)";
+            }
+        }
+    });
+
+    // Sticky navigation on scroll
+    const navContainer = document.getElementById("nav-container");
+    const mainNav = document.getElementById("main-nav");
+
+    if (navContainer && mainNav) {
+        const navOffset = navContainer.offsetTop;
+
+        window.addEventListener("scroll", () => {
+            if (window.pageYOffset >= navOffset) {
+                // Make nav sticky
+                mainNav.classList.add(
+                    "fixed",
+                    "top-0",
+                    "left-0",
+                    "right-0",
+                    "shadow-lg",
+                );
+                // Add placeholder to prevent content jump
+                navContainer.style.paddingTop = `${mainNav.offsetHeight}px`;
+            } else {
+                // Remove sticky
+                mainNav.classList.remove(
+                    "fixed",
+                    "top-0",
+                    "left-0",
+                    "right-0",
+                    "shadow-lg",
+                );
+                navContainer.style.paddingTop = "0";
+            }
+        });
+    }
+
+    // Close mobile menu when clicking on links
+    document.querySelectorAll("#mobile-menu a").forEach((link) => {
+        link.addEventListener("click", () => {
+            isMenuOpen = false;
+
+            if (mobileMenu) {
+                mobileMenu.style.maxHeight = "0";
+                mobileMenu.style.opacity = "0";
+            }
+
+            // Reset hamburger icon
+            if (hamburgerLines) {
+                hamburgerLines[0].style.transform = "rotate(0) scaleX(1)";
+                hamburgerLines[1].style.opacity = "1";
+                hamburgerLines[1].style.transform = "scaleX(1)";
+                hamburgerLines[2].style.transform = "rotate(0) scaleX(1)";
+            }
+        });
+    });
+</script>

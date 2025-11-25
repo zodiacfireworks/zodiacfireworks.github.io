@@ -1,0 +1,33 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import HeroSlider from "../components/HeroSlider.astro";
+import Navigation from "../components/Navigation.astro";
+import Portfolio from "../components/Portfolio.astro";
+import About from "../components/About.astro";
+import Contact from "../components/Contact.astro";
+import Social from "../components/Social.astro";
+import { slides, portfolioItems, teamMembers, navItems } from "../data";
+---
+
+<MainLayout
+    title="Martin Vuelta | Software Developer & Designer"
+    navItems={navItems}
+>
+    <!-- Hero Slider Section -->
+    <HeroSlider slides={slides} />
+
+    <!-- Navigation Menu -->
+    <Navigation navItems={navItems} />
+
+    <!-- Portfolio Section -->
+    <Portfolio items={portfolioItems} />
+
+    <!-- About Section -->
+    <About members={teamMembers} />
+
+    <!-- Contact Section -->
+    <Contact />
+
+    <!-- Social Section -->
+    <Social />
+</MainLayout>

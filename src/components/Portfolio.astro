@@ -1,0 +1,314 @@
+---
+import type { PortfolioItem } from '../types';
+
+interface Props {
+  items: PortfolioItem[];
+}
+
+const { items } = Astro.props;
+
+const categories = ['all', 'design', 'photography', 'video'] as const;
+---
+
+<section id="work" class="py-20 bg-primary-darker">
+  <div class="container mx-auto px-4">
+    <!-- Title -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Our Work</h2>
+      <p class="text-xl text-gray">Check Out Our Projects</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <!-- Filter Sidebar -->
+      <div class="lg:col-span-3">
+        <nav class="work-nav">
+          <ul class="space-y-2">
+            <li class="text-white font-semibold mb-4">Type of Work</li>
+            {categories.map((category) => (
+              <li>
+                <button
+                  class={`filter-btn w-full text-left px-4 py-2 rounded transition-colors ${category === 'all' ? 'bg-primary text-white' : 'text-gray hover:text-white hover:bg-primary-dark'}`}
+                  data-filter={category}
+                >
+                  {category === 'all' ? 'All Projects' : category.charAt(0).toUpperCase() + category.slice(1)}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Portfolio Grid -->
+      <div class="lg:col-span-9">
+        <div id="portfolio-grid" class="portfolio-grid">
+          {items.map((item) => (
+            <div
+              class="portfolio-item group cursor-pointer"
+              data-category={item.category}
+            >
+              <div class="relative overflow-hidden rounded-lg">
+                <!-- Thumbnail -->
+                <img
+                  src={item.thumbnail}
+                  alt={item.description}
+                  class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
+                />
+
+                <!-- Overlay -->
+                <div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-90 transition-opacity duration-300 flex items-center justify-center">
+                  <div class="text-center text-white p-4">
+                    <h3 class="text-2xl font-bold mb-2">{item.title}</h3>
+                    <p class="text-sm mb-4">{item.description}</p>
+                    {item.fullImage && (
+                      <button
+                        class="portfolio-view bg-white text-primary px-6 py-2 rounded transition-colors"
+                        data-image={item.fullImage}
+                        data-title={item.title}
+                        data-description={item.description}
+                      >
+                        View
+                      </button>
+                    )}
+                    {item.videoUrl && (
+                      <a
+                        href={item.videoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-block bg-white text-primary px-6 py-2 rounded hover:bg-gray-100 transition-colors"
+                      >
+                        Watch Video
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox Modal -->
+<div id="lightbox" class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden items-center justify-center p-4">
+  <button
+    id="close-lightbox"
+    class="absolute top-4 right-4 text-white text-4xl hover:text-primary transition-colors"
+    aria-label="Close lightbox"
+  >
+    &times;
+  </button>
+  <div class="max-w-4xl w-full">
+    <img id="lightbox-image" src="" alt="" class="w-full h-auto rounded-lg shadow-2xl" />
+    <div id="lightbox-content" class="text-center mt-4 text-white">
+      <h3 id="lightbox-title" class="text-2xl font-bold mb-2"></h3>
+      <p id="lightbox-description" class="text-gray"></p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Simplified filter functionality with smooth repositioning
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const portfolioItems = document.querySelectorAll<HTMLElement>('.portfolio-item');
+  const portfolioGrid = document.getElementById('portfolio-grid') as HTMLElement;
+
+  // Get item positions
+  function getItemPositions() {
+    const positions = new Map<HTMLElement, { left: number; top: number }>();
+    portfolioItems.forEach(item => {
+      if (!item.classList.contains('portfolio-hidden')) {
+        const rect = item.getBoundingClientRect();
+        const parentRect = portfolioGrid.getBoundingClientRect();
+        positions.set(item, {
+          left: rect.left - parentRect.left,
+          top: rect.top - parentRect.top
+        });
+      }
+    });
+    return positions;
+  }
+
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const filter = button.getAttribute('data-filter');
+
+      // Update active button
+      filterButtons.forEach(btn => {
+        btn.classList.remove('bg-primary', 'text-white');
+        btn.classList.add('text-gray', 'hover:text-white', 'hover:bg-primary-dark');
+      });
+      button.classList.add('bg-primary', 'text-white');
+      button.classList.remove('text-gray', 'hover:text-white', 'hover:bg-primary-dark');
+
+      // Get positions before filtering
+      const oldPositions = getItemPositions();
+
+      // Categorize items
+      const itemsToHide: HTMLElement[] = [];
+      const itemsToShow: HTMLElement[] = [];
+      const itemsToMove: HTMLElement[] = [];
+
+      portfolioItems.forEach(item => {
+        const category = item.getAttribute('data-category');
+        const isHidden = item.classList.contains('portfolio-hidden');
+
+        if (filter === 'all' || category === filter) {
+          // Item should be visible
+          if (isHidden) {
+            itemsToShow.push(item);
+          } else {
+            itemsToMove.push(item);
+          }
+        } else {
+          // Item should be hidden
+          if (!isHidden) {
+            itemsToHide.push(item);
+          }
+        }
+      });
+
+      // Step 1: Fade out and scale to 0 items that need to hide (center origin)
+      itemsToHide.forEach(item => {
+        item.style.transformOrigin = 'center';
+        item.style.transition = 'opacity 0.35s cubic-bezier(0.4, 0, 0.6, 1), transform 0.35s cubic-bezier(0.4, 0, 0.6, 1)';
+        item.style.opacity = '0';
+        item.style.transform = 'scale(0)';
+      });
+
+      // Step 2: Start repositioning with overlap (250ms delay instead of 400ms for overlap)
+      setTimeout(() => {
+        // Actually hide the items
+        itemsToHide.forEach(item => {
+          item.classList.add('portfolio-hidden');
+        });
+
+        // Show items that need to appear
+        itemsToShow.forEach(item => {
+          item.classList.remove('portfolio-hidden');
+          item.style.opacity = '0';
+          item.style.transform = 'scale(0.8)';
+        });
+
+        // Force reflow to get new positions
+        void portfolioGrid.offsetWidth;
+
+        // Get new positions after layout change
+        const newPositions = getItemPositions();
+
+        // Animate items that moved to new positions (FLIP)
+        itemsToMove.forEach(item => {
+          const oldPos = oldPositions.get(item);
+          const newPos = newPositions.get(item);
+
+          if (oldPos && newPos) {
+            const deltaX = oldPos.left - newPos.left;
+            const deltaY = oldPos.top - newPos.top;
+
+            if (deltaX !== 0 || deltaY !== 0) {
+              // Disable transitions temporarily
+              item.style.transition = 'none';
+              // Move to old position
+              item.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+
+              // Force reflow
+              void item.offsetWidth;
+
+              // Enable transitions with cubic-bezier and move to new position
+              item.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+              item.style.transform = 'translate(0, 0)';
+            }
+          }
+        });
+
+        // Fade in newly visible items with slight delay for overlap
+        setTimeout(() => {
+          itemsToShow.forEach(item => {
+            item.style.transition = 'opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)';
+            item.style.opacity = '1';
+            item.style.transform = 'scale(1)';
+          });
+        }, 100);
+
+      }, 250);
+    });
+  });
+
+  // Lightbox functionality
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImage = document.getElementById('lightbox-image') as HTMLImageElement;
+  const lightboxTitle = document.getElementById('lightbox-title');
+  const lightboxDescription = document.getElementById('lightbox-description');
+  const closeLightbox = document.getElementById('close-lightbox');
+  const viewButtons = document.querySelectorAll('.portfolio-view');
+
+  viewButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const image = button.getAttribute('data-image');
+      const title = button.getAttribute('data-title');
+      const description = button.getAttribute('data-description');
+
+      if (lightboxImage && lightboxTitle && lightboxDescription && lightbox) {
+        lightboxImage.src = image || '';
+        lightboxImage.alt = title || '';
+        lightboxTitle.textContent = title || '';
+        lightboxDescription.textContent = description || '';
+        lightbox.classList.remove('hidden');
+        lightbox.classList.add('flex');
+      }
+    });
+  });
+
+  closeLightbox?.addEventListener('click', () => {
+    lightbox?.classList.add('hidden');
+    lightbox?.classList.remove('flex');
+  });
+
+  lightbox?.addEventListener('click', (e) => {
+    if (e.target === lightbox) {
+      lightbox.classList.add('hidden');
+      lightbox.classList.remove('flex');
+    }
+  });
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightbox && !lightbox.classList.contains('hidden')) {
+      lightbox.classList.add('hidden');
+      lightbox.classList.remove('flex');
+    }
+  });
+</script>
+
+<style>
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .portfolio-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .portfolio-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .portfolio-item {
+    position: relative;
+    transition: all 0.5s ease;
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .portfolio-item.portfolio-hidden {
+    display: none;
+  }
+</style>

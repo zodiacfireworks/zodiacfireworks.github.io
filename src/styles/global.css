@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        @apply scroll-smooth;
+    }
+
+    body {
+        @apply antialiased;
+    }
+}
+
+@layer utilities {
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+        @apply bg-primary-darker;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        @apply bg-primary rounded;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        @apply bg-primary-dark;
+    }
+
+    /* Selection color */
+    ::selection {
+        @apply bg-primary text-white;
+    }
+
+    /* Focus styles */
+    *:focus {
+        @apply outline-none;
+    }
+
+    *:focus-visible {
+        @apply ring-2 ring-primary ring-offset-2 ring-offset-primary-darker;
+    }
+}

@@ -1,0 +1,80 @@
+---
+interface SocialPlatform {
+    name: string;
+    url: string;
+    icon: string;
+}
+
+const socialPlatforms: SocialPlatform[] = [
+    {
+        name: "Twitter",
+        url: "https://twitter.com/zodiacfireworks",
+        icon: "M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z",
+    },
+    {
+        name: "GitHub",
+        url: "https://github.com/zodiacfireworks",
+        icon: "M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22",
+    },
+    {
+        name: "LinkedIn",
+        url: "https://linkedin.com/in/martinvuelta",
+        icon: "M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z",
+    },
+    {
+        name: "Dribbble",
+        url: "#",
+        icon: "M12 2a10 10 0 1010 10A10 10 0 0012 2zm6.2 7.5a6.7 6.7 0 01-2.5 5.3 14.9 14.9 0 00-3.3-4.4 20.3 20.3 0 015.8-.9zm-8.1 8.3a6.8 6.8 0 01-4.6-1.7 11.5 11.5 0 016.8-3.6 14.7 14.7 0 012.2 5.3zm6.5-1.5a7 7 0 01-3.6 1.7 16.6 16.6 0 00-2.2-5.5 11.3 11.3 0 015.8 3.8z",
+    },
+    {
+        name: "Facebook",
+        url: "#",
+        icon: "M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z",
+    },
+    {
+        name: "Google+",
+        url: "#",
+        icon: "M17 2v6h-2V6h-2V4h2V2h2zm-8 4a4 4 0 100 8 4 4 0 000-8zm0 6a2 2 0 110-4 2 2 0 010 4z",
+    },
+    {
+        name: "Behance",
+        url: "#",
+        icon: "M3.5 9.5h3a1.5 1.5 0 000-3h-3v3zm0 3h3a1.5 1.5 0 010 3h-3v-3zM16 10a4 4 0 100 8 4 4 0 000-8z",
+    },
+];
+---
+
+<section id="social-area" class="py-20 bg-primary-darker">
+    <div class="container mx-auto px-4">
+        <nav class="social-nav">
+            <ul class="flex flex-wrap justify-center gap-6">
+                {
+                    socialPlatforms.map((platform) => (
+                        <li>
+                            <a
+                                href={platform.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="group flex items-center justify-center w-16 h-16 rounded-md bg-primary-dark hover:bg-primary transition-all duration-300 transform hover:scale-110"
+                                aria-label={`Follow on ${platform.name}`}
+                                title={`Follow on ${platform.name}`}
+                            >
+                                <svg
+                                    class="w-8 h-8 text-white"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+                                    <path d={platform.icon} />
+                                </svg>
+                            </a>
+                        </li>
+                    ))
+                }
+            </ul>
+        </nav>
+    </div>
+</section>
