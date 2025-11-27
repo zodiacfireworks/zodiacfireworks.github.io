@@ -1,5 +1,5 @@
 ---
-// Contact form component
+import Button from "../components/ui/Button.astro";
 ---
 
 <section
@@ -58,12 +58,14 @@
                     </div>
 
                     <div>
-                        <button
+                        <Button
                             type="submit"
-                            class="bg-primary hover:bg-primary-dark text-white font-semibold px-8 py-3 rounded transition-colors"
+                            class="font-semibold rounded-md"
+                            variant="primary"
+                            size="large"
                         >
                             Send Your Email
-                        </button>
+                        </Button>
                     </div>
 
                     <!-- Response message -->

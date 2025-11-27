@@ -1,5 +1,6 @@
 ---
 import type { PortfolioItem } from '../types';
+import Button from '../components/ui/Button.astro';
 
 interface Props {
   items: PortfolioItem[];
@@ -26,12 +27,14 @@ const categories = ['all', 'design', 'photography', 'video'] as const;
             <li class="text-neutral-800 dark:text-neutral-100 font-semibold mb-4">Type of Work</li>
             {categories.map((category) => (
               <li>
-                <button
-                  class={`filter-btn w-full text-left px-4 py-2 rounded transition-colors text-neutral-800 dark:text-neutral-100 hover:text-white hover:bg-primary dark:hover:bg-neutral-950 ${category === 'all' ? 'bg-primary text-neutral-100 dark:text-neutral-100' : ''}`}
+                <Button
+                  class={`filter-btn text-left rounded-md`}
                   data-filter={category}
+                  block={true}
+                  variant={category === 'all' ? 'primary' : 'default'}
                 >
                   {category === 'all' ? 'All Projects' : category.charAt(0).toUpperCase() + category.slice(1)}
-                </button>
+                </Button>
               </li>
             ))}
           </ul>

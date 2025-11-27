@@ -5,12 +5,19 @@
  */
 
 export interface Props {
+    id?: string;
     name: string;
     class?: string;
     size?: number | string;
 }
 
-const { name, class: className = "", size } = Astro.props;
+const {
+    id: iconId,
+    name,
+    class: className = "",
+    size,
+    ...otherProps
+} = Astro.props;
 
 // Icon paths from Ant Design icon set
 const icons: Record<string, string> = {
@@ -49,6 +56,7 @@ const sizeValue = typeof size === "number" ? `${size}px` : size || "1em";
 ---
 
 <svg
+    id={iconId}
     class={className}
     width={sizeValue}
     height={sizeValue}
@@ -56,6 +64,7 @@ const sizeValue = typeof size === "number" ? `${size}px` : size || "1em";
     fill="currentColor"
     xmlns="http://www.w3.org/2000/svg"
     aria-hidden="true"
+    {...otherProps}
 >
     <path d={iconPath}></path>
 </svg>

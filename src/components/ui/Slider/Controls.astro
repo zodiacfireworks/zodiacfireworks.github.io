@@ -1,5 +1,6 @@
 ---
 import Icon from "../Icon.astro";
+import Button from "../Button.astro";
 
 interface Props {
     sliderId: string;
@@ -17,26 +18,30 @@ const { sliderId, slideCount, nextSectionId } = Astro.props;
 >
     <!-- Navigation Arrows -->
     <div class="flex">
-        <button
+        <Button
             id={`${sliderId}--prev`}
-            class="w-12 h-12 bg-neutral-200 dark:bg-neutral-950 hover:bg-primary dark:hover:bg-primary transition-colors flex items-center justify-center"
+            class="flex items-center justify-center"
             aria-label="Previous slide"
+            square={true}
+            variant="dark"
         >
             <Icon
                 name="left"
                 class="w-4 h-4 text-neutral-950 dark:text-neutral-50"
             />
-        </button>
-        <button
+        </Button>
+        <Button
             id={`${sliderId}--next`}
-            class="w-12 h-12 bg-neutral-200 dark:bg-neutral-950 hover:bg-primary dark:hover:bg-primary transition-colors flex items-center justify-center ml-1"
+            class="flex items-center justify-center ml-1"
             aria-label="Next slide"
+            square={true}
+            variant="dark"
         >
             <Icon
                 name="right"
                 class="w-4 h-4 text-neutral-950 dark:text-neutral-50"
             />
-        </button>
+        </Button>
     </div>
 
     <!-- Slide Indicators -->
@@ -57,21 +62,23 @@ const { sliderId, slideCount, nextSectionId } = Astro.props;
     <!-- Next Section Arrow -->
     {
         nextSectionId && (
-            <a
+            <Button
                 href={`#${nextSectionId}`}
-                class="cursor-pointer w-12 h-12 bg-neutral-200 dark:bg-neutral-950 hover:bg-primary dark:hover:bg-primary transition-colors flex items-center justify-center"
+                class="flex items-center justify-center"
                 aria-label="Scroll to next section"
+                square={true}
+                variant="dark"
             >
                 <Icon
-                    name="up"
-                    class="w-6 h-6 text-neutral-800 dark:text-neutral-100"
+                    name="down"
+                    class="w-4 h-4 text-neutral-950 dark:text-neutral-50"
                 />
-            </a>
+            </Button>
         )
     }
 </div>
 
-<script define:vars={{ sliderId }}>
+<script define:vars={{ sliderId }} is:inline>
     class ControlsHandler {
         constructor(sliderId) {
             this.sliderId = sliderId;

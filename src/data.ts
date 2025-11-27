@@ -119,7 +119,6 @@ export const teamMembers: TeamMember[] = [
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac augue at erat hendrerit dictum. Praesent porta, purus eget sagittis imperdiet.',
         social: [
             { platform: 'Twitter', url: '#', icon: 'twitter' },
-            { platform: 'Email', url: '#', icon: 'email' },
         ],
     },
     {
@@ -131,8 +130,6 @@ export const teamMembers: TeamMember[] = [
         social: [
             { platform: 'Twitter', url: '#', icon: 'twitter' },
             { platform: 'LinkedIn', url: '#', icon: 'linkedin' },
-            { platform: 'Google+', url: '#', icon: 'google-plus' },
-            { platform: 'Vimeo', url: '#', icon: 'vimeo' },
         ],
     },
 ];

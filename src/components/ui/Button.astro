@@ -1,0 +1,101 @@
+---
+interface Props {
+    id?: string;
+    variant?: "default" | "primary" | "dark" | "light";
+    size?: "mini" | "small" | "medium" | "large";
+    block?: boolean;
+    square?: boolean;
+    href?: string;
+    type?: "button" | "submit" | "reset";
+    class?: string;
+    target?: "_blank" | "_self" | "_parent" | "_top";
+    rel?: string;
+    disabled?: boolean;
+    title?: string;
+}
+
+const {
+    id: buttonId,
+    variant = "default",
+    size = "medium",
+    block = false,
+    square = false,
+    href,
+    type = "button",
+    class: className = "",
+    target,
+    rel,
+    disabled = false,
+    title,
+    ...otherProps
+} = Astro.props;
+
+// Base styles
+const baseStyles =
+    "text-center uppercase font-medium cursor-pointer border-none transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed text-neutral-950 dark:text-neutral-50 hover:text-neutral-50 dark:hover:text-neutral-50";
+
+// Variant styles (original: bg #3C3F45, text #23262C, hover bg #DE5E60, hover text white)
+const variantStyles = {
+    default:
+        "bg-neutral-100 dark:bg-neutral-900 hover:bg-primary dark:hover:bg-primary",
+    primary:
+        "bg-primary text-neutral-50 hover:bg-primary-dark dark:hover:bg-primary-dark",
+    dark: "bg-neutral-200 dark:bg-neutral-950 hover:bg-primary dark:hover:bg-primary",
+    light: "bg-neutral-50 dark:bg-neutral-800 hover:bg-primary dark:hover:bg-primary",
+};
+// Size styles (matching original: mini=4/12, small=8/18, medium=13/26, large=16/30)
+const sizeStyles = {
+    mini: "px-2 py-1 text-xs",
+    small: "px-4 py-2 text-sm",
+    medium: "px-6 py-3 text-base",
+    large: "px-8 py-4 text-lg",
+};
+
+// Square size styles (equal width and height with flex centering)
+const squareSizeStyles = {
+    mini: "w-6 h-6 p-0 text-xs",
+    small: "w-10 h-10 p-0 text-sm",
+    medium: "w-12 h-12 p-0 text-base",
+    large: "w-16 h-16 p-0 text-lg",
+};
+
+// Square style
+const squareStyle = square ? "flex items-center justify-center" : "";
+
+// Block style
+const blockStyle = block ? "w-full px-0" : "";
+
+// Combine all styles
+const buttonClasses =
+    `${baseStyles} ${variantStyles[variant]} ${square ? squareSizeStyles[size] : sizeStyles[size]} ${squareStyle} ${blockStyle} ${className}`.trim();
+
+// Render as link or button
+const isLink = !!href;
+---
+
+{
+    isLink ? (
+        <a
+            id={buttonId}
+            href={href}
+            target={target}
+            class={buttonClasses}
+            rel={target === "_blank" ? "noopener noreferrer" : rel}
+            title={title}
+            {...otherProps}
+        >
+            <slot />
+        </a>
+    ) : (
+        <button
+            id={buttonId}
+            type={type}
+            class={buttonClasses}
+            disabled={disabled}
+            title={title}
+            {...otherProps}
+        >
+            <slot />
+        </button>
+    )
+}

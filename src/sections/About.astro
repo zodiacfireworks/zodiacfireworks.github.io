@@ -1,6 +1,7 @@
 ---
 import type { TeamMember } from '../types';
 import Icon from '../components/ui/Icon.astro';
+import Button from '../components/ui/Button.astro';
 
 interface Props {
   members: TeamMember[];
@@ -42,15 +43,17 @@ const { members } = Astro.props;
             <!-- Social Links -->
             <div class="flex justify-center space-x-4">
               {member.social.map((link) => (
-                <a
+                <Button
                   href={link.url}
                   target="_blank"
-                  rel="noopener noreferrer"
-                  class="group w-10 h-10 rounded bg-neutral-100 dark:bg-neutral-900 hover:bg-primary dark:hover:bg-primary text-neutral-800 dark:text-neutral-100 hover:text-neutral-100 flex items-center justify-center transition-all duration-300"
+                  class="group rounded-md flex items-center justify-center"
                   aria-label={link.platform}
+                  square={true}
+                  variant="dark"
+                  size="small"
                 >
                   <Icon name={link.icon} class="w-5 h-5" />
-                </a>
+                </Button>
               ))}
             </div>
           </div>

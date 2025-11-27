@@ -1,5 +1,6 @@
 ---
 import Icon from "../components/ui/Icon.astro";
+import Button from "../components/ui/Button.astro";
 
 interface SocialPlatform {
     name: string;
@@ -41,19 +42,18 @@ const socialPlatforms: SocialPlatform[] = [
                 {
                     socialPlatforms.map((platform) => (
                         <li>
-                            <a
+                            <Button
                                 href={platform.url}
                                 target="_blank"
-                                rel="noopener noreferrer"
-                                class="group flex items-center justify-center w-16 h-16 rounded-md bg-neutral-200 dark:bg-neutral-950 hover:bg-primary dark:hover:bg-primary transition-all duration-300 transform hover:scale-110"
+                                class="group rounded-md flex items-center justify-center transform hover:scale-110"
                                 aria-label={`Follow on ${platform.name}`}
                                 title={`Follow on ${platform.name}`}
+                                square={true}
+                                size="large"
+                                variant="dark"
                             >
-                                <Icon
-                                    name={platform.icon}
-                                    class="w-8 h-8 text-neutral-800 dark:text-neutral-50 group-hover:text-neutral-50"
-                                />
-                            </a>
+                                <Icon name={platform.icon} class="w-8 h-8" />
+                            </Button>
                         </li>
                     ))
                 }
