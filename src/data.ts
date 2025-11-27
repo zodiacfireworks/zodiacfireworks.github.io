@@ -249,6 +249,5 @@ export const navItems: NavItem[] = [
     { label: 'Portfolio', href: '#work' },
     { label: 'Experience', href: '#experience' },
     { label: 'Skills', href: '#skills' },
-    { label: 'Skills', href: '#skills' },
     { label: 'Contact', href: '#contact' },
 ];
