@@ -8,7 +8,7 @@ interface Props {
 
 const { items } = Astro.props;
 
-const categories = ['all', 'web-app', 'library', 'tool', 'api'] as const;
+const categories: string[] = ['all', 'web-app', 'library', 'tool', 'api'];
 ---
 
 <section id="work" class="py-20 bg-neutral-100 dark:bg-neutral-900 transition-colors duration-300">
@@ -25,7 +25,7 @@ const categories = ['all', 'web-app', 'library', 'tool', 'api'] as const;
         <nav class="work-nav">
           <ul class="space-y-2">
             <li class="text-neutral-800 dark:text-neutral-100 font-semibold mb-4">Type of Work</li>
-            {categories.map((category) => (
+            {categories.map((category: string) => (
               <li>
                 <Button
                   class={`filter-btn text-left rounded-md`}

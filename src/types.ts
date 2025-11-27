@@ -14,15 +14,6 @@ export interface PortfolioItem {
     videoUrl?: string;
 }
 
-export interface TeamMember {
-    id: string;
-    name: string;
-    role: string;
-    image: string;
-    description: string;
-    social: SocialLink[];
-}
-
 export interface SocialLink {
     platform: string;
     url: string;

@@ -1,4 +1,4 @@
-import type { SlideItem, PortfolioItem, TeamMember, NavItem } from './types';
+import type { SlideItem, PortfolioItem, NavItem } from './types';
 
 // Skill categories for Skills section
 export interface Skill {
