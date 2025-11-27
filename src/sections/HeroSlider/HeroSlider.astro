@@ -1,6 +1,5 @@
 ---
 import type { SlideItem } from "../../types";
-import Section from "./Section.astro";
 import Slider from "./Slider.astro";
 import Controls from "./Controls.astro";
 
@@ -11,10 +10,10 @@ interface Props {
 const { slides } = Astro.props;
 ---
 
-<Section>
+<section id="home-slider" class="relative h-screen overflow-hidden">
     <Slider slides={slides} />
     <Controls slideCount={slides.length} />
-</Section>
+</section>
 
 <script define:vars={{ slides }} is:inline>
     let currentSlide = 0;
