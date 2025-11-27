@@ -1,7 +1,7 @@
 ---
 import type { NavItem } from "../types";
-import Icon from "../components/ui/Icon.astro";
 import ThemeToggler from "../components/ui/ThemeToggler.astro";
+import BackToTop from "../components/ui/BackToTop.astro";
 import Footer from "../sections/Footer.astro";
 import "../styles/global.css";
 
@@ -63,14 +63,11 @@ const {
         />
 
         <!-- Back to Top -->
-        <a
+        <BackToTop
             id="back-to-top"
-            href="#home-slider"
-            class="fixed bottom-8 right-8 bg-neutral-200 hover:bg-neutral-100 text-neutral-950 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-50 w-12 h-12 rounded-md flex items-center justify-center transition-all duration-300 z-40 shadow-lg"
+            class="fixed bottom-8 right-8 z-50"
             aria-label="Back to top"
-        >
-            <Icon name="up" class="w-6 h-6" />
-        </a>
+        />
 
         <script>
             // Smooth scroll for anchor links
@@ -99,18 +96,6 @@ const {
                         }
                     },
                 );
-            });
-
-            // Back to top button
-            const backToTop = document.getElementById("back-to-top");
-            window.addEventListener("scroll", () => {
-                if (window.pageYOffset > 500) {
-                    backToTop?.classList.remove("opacity-0", "invisible");
-                    backToTop?.classList.add("opacity-100", "visible");
-                } else {
-                    backToTop?.classList.add("opacity-0", "invisible");
-                    backToTop?.classList.remove("opacity-100", "visible");
-                }
             });
         </script>
     </body>

@@ -1,0 +1,51 @@
+---
+import Icon from "./Icon.astro";
+
+export interface Props {
+    id: string;
+    class: string;
+    otherProps?: Record<string, any>;
+}
+
+const {
+    id: elementId = "back-to-top",
+    class: className = "",
+    otherProps,
+} = Astro.props;
+---
+
+<button
+    id={elementId}
+    class={`bg-neutral-200 hover:bg-neutral-100 text-neutral-950 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-50 w-12 h-12 rounded-md flex items-center justify-center transition-all duration-300 z-40 shadow-lg ${className}`}
+    {...otherProps}
+>
+    <Icon name="up" class="w-6 h-6" />
+</button>
+
+<script define:vars={{ elementId }} is:inline>
+    // Back to top button
+    const backToTop = document.getElementById(elementId);
+    window.addEventListener("scroll", () => {
+        if (window.pageYOffset > 500) {
+            backToTop?.classList.remove("opacity-0", "invisible");
+            backToTop?.classList.add("opacity-100", "visible");
+        } else {
+            backToTop?.classList.add("opacity-0", "invisible");
+            backToTop?.classList.remove("opacity-100", "visible");
+        }
+    });
+    window.addEventListener("load", () => {
+        // Initial state
+        if (window.pageYOffset > 500) {
+            backToTop?.classList.remove("opacity-0", "invisible");
+            backToTop?.classList.add("opacity-100", "visible");
+        } else {
+            backToTop?.classList.add("opacity-0", "invisible");
+            backToTop?.classList.remove("opacity-100", "visible");
+        }
+    });
+    backToTop.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+</script>
