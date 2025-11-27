@@ -8,15 +8,15 @@ interface Props {
 
 const { items } = Astro.props;
 
-const categories = ['all', 'design', 'photography', 'video'] as const;
+const categories = ['all', 'web-app', 'library', 'tool', 'api'] as const;
 ---
 
 <section id="work" class="py-20 bg-neutral-100 dark:bg-neutral-900 transition-colors duration-300">
   <div class="container mx-auto px-4">
     <!-- Title -->
     <div class="text-center mb-16">
-      <h2 class="text-4xl md:text-5xl font-bold text-neutral-800 dark:text-neutral-100 mb-4">Our Work</h2>
-      <p class="text-xl text-neutral-800 dark:text-neutral-100">Check Out Our Projects</p>
+      <h2 class="text-4xl md:text-5xl font-bold text-neutral-800 dark:text-neutral-100 mb-4">Featured Projects</h2>
+      <p class="text-xl text-neutral-800 dark:text-neutral-100">Explore my open source work and personal projects</p>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -33,7 +33,12 @@ const categories = ['all', 'design', 'photography', 'video'] as const;
                   block={true}
                   variant={category === 'all' ? 'primary' : 'default'}
                 >
-                  {category === 'all' ? 'All Projects' : category.charAt(0).toUpperCase() + category.slice(1)}
+                  {category === 'all' ? 'All Projects' :
+                   category === 'web-app' ? 'Web Apps' :
+                   category === 'library' ? 'Libraries' :
+                   category === 'tool' ? 'Tools' :
+                   category === 'api' ? 'APIs' :
+                   category.charAt(0).toUpperCase() + category.slice(1)}
                 </Button>
               </li>
             ))}
@@ -77,7 +82,7 @@ const categories = ['all', 'design', 'photography', 'video'] as const;
                         href={item.videoUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="inline-block bg-neutral-50 text-primary px-6 py-2 rounded hover:bg-gray-100 transition-colors"
+                        class="inline-block bg-neutral-50 text-primary px-6 py-2 rounded hover:bg-neutral-100 transition-colors"
                       >
                         Watch Video
                       </a>
@@ -106,7 +111,7 @@ const categories = ['all', 'design', 'photography', 'video'] as const;
     <img id="lightbox-image" src="" alt="" class="w-full h-auto rounded-lg shadow-2xl" />
     <div id="lightbox-content" class="text-center mt-4 text-white">
       <h3 id="lightbox-title" class="text-2xl font-bold mb-2"></h3>
-      <p id="lightbox-description" class="text-gray-400"></p>
+      <p id="lightbox-description" class="text-neutral-200"></p>
     </div>
   </div>
 </div>
@@ -139,11 +144,11 @@ const categories = ['all', 'design', 'photography', 'video'] as const;
 
       // Update active button
       filterButtons.forEach(btn => {
-        btn.classList.remove('bg-primary', 'text-neutral-100');
-        btn.classList.add('text-neutral-800', 'hover:text-neutral-100', 'hover:bg-neutral-950');
+        btn.classList.remove("text-neutral-50", "hover:text-neutral-50", "dark:text-neutral-50", "dark:hover:text-neutral-50", "bg-primary", "hover:bg-primary-dark", "dark:hover:bg-primary-dark");
+        btn.classList.add("text-neutral-950", "hover:text-neutral-50", "dark:text-neutral-50", "dark:hover:text-neutral-50", "bg-neutral-100", "dark:bg-neutral-900", "hover:bg-primary", "dark:hover:bg-primary");
       });
-      button.classList.add('bg-primary', 'text-neutral-100');
-      button.classList.remove('text-neutral-800', 'hover:text-neutral-100', 'hover:bg-neutral-950');
+      button.classList.add("text-neutral-50", "hover:text-neutral-50", "dark:text-neutral-50", "dark:hover:text-neutral-50", "bg-primary", "hover:bg-primary-dark", "dark:hover:bg-primary-dark");
+      button.classList.remove("text-neutral-950", "hover:text-neutral-50", "dark:text-neutral-50", "dark:hover:text-neutral-50", "bg-neutral-100", "dark:bg-neutral-900", "hover:bg-primary", "dark:hover:bg-primary");
       // Get positions before filtering
       const oldPositions = getItemPositions();
 

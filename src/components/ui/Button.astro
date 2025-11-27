@@ -32,16 +32,16 @@ const {
 
 // Base styles
 const baseStyles =
-    "text-center uppercase font-medium cursor-pointer border-none transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed text-neutral-950 dark:text-neutral-50 hover:text-neutral-50 dark:hover:text-neutral-50";
+    "text-center uppercase font-medium cursor-pointer border-none transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed";
 
 // Variant styles (original: bg #3C3F45, text #23262C, hover bg #DE5E60, hover text white)
 const variantStyles = {
     default:
-        "bg-neutral-100 dark:bg-neutral-900 hover:bg-primary dark:hover:bg-primary",
+        "text-neutral-950 hover:text-neutral-50 dark:text-neutral-50 dark:hover:text-neutral-50 bg-neutral-100 dark:bg-neutral-900 hover:bg-primary dark:hover:bg-primary",
     primary:
-        "bg-primary text-neutral-50 hover:bg-primary-dark dark:hover:bg-primary-dark",
-    dark: "bg-neutral-200 dark:bg-neutral-950 hover:bg-primary dark:hover:bg-primary",
-    light: "bg-neutral-50 dark:bg-neutral-800 hover:bg-primary dark:hover:bg-primary",
+        "text-neutral-50 hover:text-neutral-50 dark:text-neutral-50 dark:hover:text-neutral-50 bg-primary hover:bg-primary-dark dark:hover:bg-primary-dark",
+    dark: "text-neutral-950 hover:text-neutral-50 dark:text-neutral-50 dark:hover:text-neutral-50 bg-neutral-200 dark:bg-neutral-950 hover:bg-primary dark:hover:bg-primary",
+    light: "text-neutral-950 hover:text-neutral-50 dark:text-neutral-50 dark:hover:text-neutral-50 bg-neutral-50 dark:bg-neutral-800 hover:bg-primary dark:hover:bg-primary",
 };
 // Size styles (matching original: mini=4/12, small=8/18, medium=13/26, large=16/30)
 const sizeStyles = {

@@ -17,7 +17,7 @@ const { categories } = Astro.props;
 
 <section
     id="skills"
-    class="py-20 bg-neutral-50 dark:bg-neutral-900 transition-colors duration-300"
+    class="py-20 bg-neutral-100 dark:bg-neutral-900 transition-colors duration-300"
 >
     <div class="container mx-auto px-4">
         <!-- Title -->
@@ -33,10 +33,10 @@ const { categories } = Astro.props;
         </div>
 
         <!-- Skills Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {
                 categories.map((category) => (
-                    <div class="skill-category bg-neutral-100 dark:bg-neutral-950 rounded-lg p-6 transition-all duration-300 hover:shadow-lg">
+                    <div class="skill-category bg-neutral-200 dark:bg-neutral-950 rounded-lg p-6 transition-all duration-300 hover:shadow-lg">
                         <h3 class="text-2xl font-bold text-primary mb-6">
                             {category.title}
                         </h3>
@@ -54,7 +54,7 @@ const { categories } = Astro.props;
                                         )}
                                     </div>
                                     {skill.level && (
-                                        <div class="w-full bg-neutral-200 dark:bg-neutral-800 rounded-full h-2 overflow-hidden">
+                                        <div class="w-full bg-neutral-100 dark:bg-neutral-900 rounded-full h-2 overflow-hidden">
                                             <div
                                                 class="bg-primary h-full rounded-full transition-all duration-1000 ease-out skill-bar"
                                                 style={`width: 0%`}

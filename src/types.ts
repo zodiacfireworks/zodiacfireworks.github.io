@@ -8,7 +8,7 @@ export interface PortfolioItem {
     id: string;
     title: string;
     description: string;
-    category: 'design' | 'photography' | 'video';
+    category: 'web-app' | 'library' | 'tool' | 'api';
     thumbnail: string;
     fullImage?: string;
     videoUrl?: string;
