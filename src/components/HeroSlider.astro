@@ -1,9 +1,9 @@
 ---
-import type { SlideItem } from '../types';
-import Icon from './Icon.astro';
+import type { SlideItem } from "../types";
+import Icon from "./Icon.astro";
 
 interface Props {
-  slides: SlideItem[];
+    slides: SlideItem[];
 }
 
 const { slides } = Astro.props;
@@ -67,14 +67,20 @@ const { slides } = Astro.props;
                 class="w-12 h-12 bg-neutral-200 dark:bg-neutral-950 hover:bg-primary dark:hover:bg-primary transition-colors flex items-center justify-center"
                 aria-label="Previous slide"
             >
-                <Icon name="left" class="w-4 h-4 text-neutral-950 dark:text-neutral-50" />
+                <Icon
+                    name="left"
+                    class="w-4 h-4 text-neutral-950 dark:text-neutral-50"
+                />
             </button>
             <button
                 id="next-slide"
                 class="w-12 h-12 bg-neutral-200 dark:bg-neutral-950 hover:bg-primary dark:hover:bg-primary transition-colors flex items-center justify-center ml-1"
                 aria-label="Next slide"
             >
-                <Icon name="right" class="w-4 h-4 text-neutral-950 dark:text-neutral-50" />
+                <Icon
+                    name="right"
+                    class="w-4 h-4 text-neutral-950 dark:text-neutral-50"
+                />
             </button>
         </div>
 
@@ -99,7 +105,10 @@ const { slides } = Astro.props;
             class="w-12 h-12 bg-neutral-200 dark:bg-neutral-950 hover:bg-primary dark:hover:bg-primary transition-colors flex items-center justify-center"
             aria-label="Scroll to next section"
         >
-            <Icon name="up" class="w-6 h-6 text-neutral-800 dark:text-neutral-100" />
+            <Icon
+                name="up"
+                class="w-6 h-6 text-neutral-800 dark:text-neutral-100"
+            />
         </a>
     </div>
 </section>
