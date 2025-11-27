@@ -1,48 +1,52 @@
 ---
-import type { TeamMember } from '../types';
 import Icon from '../components/ui/Icon.astro';
 import Button from '../components/ui/Button.astro';
 
-interface Props {
-  members: TeamMember[];
+interface SocialLink {
+  platform: string;
+  url: string;
+  icon: string;
 }
 
-const { members } = Astro.props;
+interface Props {
+  name: string;
+  role: string;
+  image: string;
+  bio: string;
+  highlights?: string[];
+  social: SocialLink[];
+}
+
+const { name, role, image, bio, highlights, social } = Astro.props;
 ---
 
 <section id="about" class="py-20 bg-neutral-200 dark:bg-neutral-950 transition-colors duration-300">
   <div class="container mx-auto px-4">
     <!-- Title -->
     <div class="text-center mb-16">
-      <h2 class="text-4xl md:text-5xl font-bold text-neutral-800 dark:text-neutral-100 mb-4">About Us</h2>
-      <p class="text-xl text-neutral-800 dark:text-neutral-100">Learn About our Team & Culture</p>
+      <h2 class="text-4xl md:text-5xl font-bold text-neutral-800 dark:text-neutral-100 mb-4">About Me</h2>
+      <p class="text-xl text-neutral-800 dark:text-neutral-100">Get to know me better</p>
     </div>
 
-    <!-- Team Members Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-8">
-      {members.map((member) => (
-        <div class="profile-card group">
-          <!-- Image -->
-          <div class="relative overflow-hidden rounded-lg mb-6">
-            <img
-              src={member.image}
-              alt={member.name}
-              class="w-full h-80 object-cover transition-transform duration-300 group-hover:scale-110"
-            />
-            <!-- Overlay with role -->
-            <div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-90 transition-opacity duration-300 flex items-center justify-center">
-              <span class="text-white text-xl font-semibold">{member.role}</span>
+    <!-- Content -->
+    <div class="max-w-5xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
+        <!-- Image Column -->
+        <div class="lg:col-span-2">
+          <div class="relative group">
+            <div class="relative overflow-hidden rounded-lg shadow-xl">
+              <img
+                src={image}
+                alt={name}
+                class="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
+              />
+              <!-- Overlay on hover -->
+              <div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
             </div>
-          </div>
-
-          <!-- Info -->
-          <div class="text-center">
-            <h3 class="text-2xl font-bold text-neutral-800 dark:text-neutral-100 mb-3">{member.name}</h3>
-            <p class="text-neutral-800 dark:text-neutral-100 mb-6 leading-relaxed">{member.description}</p>
-
+            
             <!-- Social Links -->
-            <div class="flex justify-center space-x-4">
-              {member.social.map((link) => (
+            <div class="flex justify-center space-x-4 mt-6">
+              {social.map((link) => (
                 <Button
                   href={link.url}
                   target="_blank"
@@ -58,7 +62,39 @@ const { members } = Astro.props;
             </div>
           </div>
         </div>
-      ))}
+
+        <!-- Bio Column -->
+        <div class="lg:col-span-3">
+          <div class="space-y-6">
+            <div>
+              <h3 class="text-3xl font-bold text-neutral-800 dark:text-neutral-100 mb-2">{name}</h3>
+              <p class="text-xl text-primary font-medium mb-6">{role}</p>
+            </div>
+
+            <div class="prose prose-lg dark:prose-invert max-w-none">
+              <p class="text-neutral-700 dark:text-neutral-300 leading-relaxed">
+                {bio}
+              </p>
+            </div>
+
+            {highlights && highlights.length > 0 && (
+              <div class="mt-8">
+                <h4 class="text-xl font-bold text-neutral-800 dark:text-neutral-100 mb-4">Highlights</h4>
+                <ul class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {highlights.map((highlight) => (
+                    <li class="flex items-start">
+                      <svg class="w-5 h-5 text-primary mr-2 mt-1 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                      </svg>
+                      <span class="text-neutral-700 dark:text-neutral-300">{highlight}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>

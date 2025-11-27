@@ -1,0 +1,104 @@
+---
+interface SkillCategory {
+    title: string;
+    skills: Array<{
+        name: string;
+        level?: number; // 0-100
+        icon?: string;
+    }>;
+}
+
+interface Props {
+    categories: SkillCategory[];
+}
+
+const { categories } = Astro.props;
+---
+
+<section
+    id="skills"
+    class="py-20 bg-neutral-50 dark:bg-neutral-900 transition-colors duration-300"
+>
+    <div class="container mx-auto px-4">
+        <!-- Title -->
+        <div class="text-center mb-16">
+            <h2
+                class="text-4xl md:text-5xl font-bold text-neutral-800 dark:text-neutral-100 mb-4"
+            >
+                Skills & Expertise
+            </h2>
+            <p class="text-xl text-neutral-800 dark:text-neutral-100">
+                Technologies and tools I work with
+            </p>
+        </div>
+
+        <!-- Skills Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {
+                categories.map((category) => (
+                    <div class="skill-category bg-neutral-100 dark:bg-neutral-950 rounded-lg p-6 transition-all duration-300 hover:shadow-lg">
+                        <h3 class="text-2xl font-bold text-primary mb-6">
+                            {category.title}
+                        </h3>
+                        <ul class="space-y-4">
+                            {category.skills.map((skill) => (
+                                <li>
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="text-neutral-800 dark:text-neutral-100 font-medium">
+                                            {skill.name}
+                                        </span>
+                                        {skill.level && (
+                                            <span class="text-sm text-neutral-600 dark:text-neutral-400">
+                                                {skill.level}%
+                                            </span>
+                                        )}
+                                    </div>
+                                    {skill.level && (
+                                        <div class="w-full bg-neutral-200 dark:bg-neutral-800 rounded-full h-2 overflow-hidden">
+                                            <div
+                                                class="bg-primary h-full rounded-full transition-all duration-1000 ease-out skill-bar"
+                                                style={`width: 0%`}
+                                                data-level={skill.level}
+                                            />
+                                        </div>
+                                    )}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<script>
+    // Animate skill bars on scroll
+    const observerOptions = {
+        threshold: 0.2,
+        rootMargin: "0px 0px -100px 0px",
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                const skillBars =
+                    entry.target.querySelectorAll<HTMLElement>(".skill-bar");
+                skillBars.forEach((bar) => {
+                    const level = bar.getAttribute("data-level");
+                    if (level) {
+                        setTimeout(() => {
+                            bar.style.width = `${level}%`;
+                        }, 100);
+                    }
+                });
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    const skillsSection = document.getElementById("skills");
+    if (skillsSection) {
+        observer.observe(skillsSection);
+    }
+</script>

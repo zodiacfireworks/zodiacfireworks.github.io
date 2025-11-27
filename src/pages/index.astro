@@ -2,28 +2,36 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import HeroSlider from "../sections/HeroSlider.astro";
 import Navigation from "../components/Navigation.astro";
+import Skills from "../sections/Skills.astro";
+import Experience from "../sections/Experience.astro";
 import Portfolio from "../sections/Portfolio.astro";
 import About from "../sections/About.astro";
 import Contact from "../sections/Contact.astro";
 import Social from "../sections/Social.astro";
-import { slides, portfolioItems, teamMembers, navItems } from "../data";
+import { slides, skillCategories, experiences, portfolioItems, aboutData, navItems } from "../data";
 ---
 
 <MainLayout
-    title="Martin Vuelta | Software Developer & Designer"
+    title="Martin Vuelta | Software Engineer & Full Stack Developer"
     navItems={navItems}
 >
     <!-- Hero Slider Section -->
-    <HeroSlider id="home-slider" nextSectionId="work" slides={slides} />
+    <HeroSlider id="home-slider" nextSectionId="skills" slides={slides} />
 
     <!-- Navigation Menu -->
     <Navigation navItems={navItems} />
+
+    <!-- Skills Section -->
+    <Skills categories={skillCategories} />
+
+    <!-- Experience Section -->
+    <Experience experiences={experiences} />
 
     <!-- Portfolio Section -->
     <Portfolio items={portfolioItems} />
 
     <!-- About Section -->
-    <About members={teamMembers} />
+    <About {...aboutData} />
 
     <!-- Contact Section -->
     <Contact />

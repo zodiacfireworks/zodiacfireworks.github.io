@@ -1,0 +1,155 @@
+---
+interface ExperienceItem {
+    id: string;
+    title: string;
+    company: string;
+    location?: string;
+    period: string;
+    description: string;
+    achievements?: string[];
+    technologies?: string[];
+}
+
+interface Props {
+    experiences: ExperienceItem[];
+}
+
+const { experiences } = Astro.props;
+---
+
+<section
+    id="experience"
+    class="py-20 bg-neutral-100 dark:bg-neutral-900 transition-colors duration-300"
+>
+    <div class="container mx-auto px-4">
+        <!-- Title -->
+        <div class="text-center mb-16">
+            <h2
+                class="text-4xl md:text-5xl font-bold text-neutral-800 dark:text-neutral-100 mb-4"
+            >
+                Experience
+            </h2>
+            <p class="text-xl text-neutral-800 dark:text-neutral-100">
+                My professional journey
+            </p>
+        </div>
+
+        <!-- Timeline -->
+        <div class="max-w-4xl mx-auto">
+            <div class="relative">
+                <!-- Timeline Line -->
+                <div
+                    class="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 w-1 h-full bg-primary"
+                >
+                </div>
+
+                <!-- Experience Items -->
+                <div class="space-y-12">
+                    {
+                        experiences.map((exp, index) => (
+                            <div
+                                class={`relative flex items-start ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}
+                            >
+                                <!-- Timeline Dot -->
+                                <div class="absolute left-8 md:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-primary rounded-full border-4 border-neutral-100 dark:border-neutral-900 z-10" />
+
+                                <!-- Content Card -->
+                                <div
+                                    class={`w-full md:w-[calc(50%-3rem)] ml-16 md:ml-0 ${index % 2 === 0 ? "md:pr-12" : "md:pl-12"}`}
+                                >
+                                    <div class="bg-neutral-50 dark:bg-neutral-950 rounded-lg p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+                                        <div class="mb-4">
+                                            <h3 class="text-2xl font-bold text-neutral-800 dark:text-neutral-100 mb-2">
+                                                {exp.title}
+                                            </h3>
+                                            <div class="flex flex-wrap items-center gap-2 text-primary font-medium mb-2">
+                                                <span>{exp.company}</span>
+                                                {exp.location && (
+                                                    <>
+                                                        <span>•</span>
+                                                        <span class="text-neutral-600 dark:text-neutral-400">
+                                                            {exp.location}
+                                                        </span>
+                                                    </>
+                                                )}
+                                            </div>
+                                            <p class="text-sm text-neutral-600 dark:text-neutral-400">
+                                                {exp.period}
+                                            </p>
+                                        </div>
+
+                                        <p class="text-neutral-700 dark:text-neutral-300 mb-4">
+                                            {exp.description}
+                                        </p>
+
+                                        {exp.achievements &&
+                                            exp.achievements.length > 0 && (
+                                                <div class="mb-4">
+                                                    <h4 class="text-sm font-semibold text-neutral-800 dark:text-neutral-100 mb-2 uppercase">
+                                                        Key Achievements
+                                                    </h4>
+                                                    <ul class="list-disc list-inside space-y-1 text-sm text-neutral-700 dark:text-neutral-300">
+                                                        {exp.achievements.map(
+                                                            (achievement) => (
+                                                                <li>
+                                                                    {achievement}
+                                                                </li>
+                                                            ),
+                                                        )}
+                                                    </ul>
+                                                </div>
+                                            )}
+
+                                        {exp.technologies &&
+                                            exp.technologies.length > 0 && (
+                                                <div class="flex flex-wrap gap-2">
+                                                    {exp.technologies.map(
+                                                        (tech) => (
+                                                            <span class="px-3 py-1 bg-primary/10 text-primary text-xs rounded-full">
+                                                                {tech}
+                                                            </span>
+                                                        ),
+                                                    )}
+                                                </div>
+                                            )}
+                                    </div>
+                                </div>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Ensure timeline items animate in */
+    @media (min-width: 768px) {
+        .relative.flex {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .relative.flex:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+        .relative.flex:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+        .relative.flex:nth-child(4) {
+            animation-delay: 0.3s;
+        }
+        .relative.flex:nth-child(5) {
+            animation-delay: 0.4s;
+        }
+    }
+
+    @keyframes fadeInUp {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
