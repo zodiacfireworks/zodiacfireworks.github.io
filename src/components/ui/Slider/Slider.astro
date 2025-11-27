@@ -1,0 +1,347 @@
+---
+import type { SlideItem } from "../../../types";
+import Slide from "./Slide.astro";
+import Controls from "./Controls.astro";
+
+interface Props {
+    id?: string;
+    slides: SlideItem[];
+    nextSectionId?: string;
+}
+
+const { slides, nextSectionId } = Astro.props;
+let { id: sliderId } = Astro.props;
+
+if (!sliderId) {
+    sliderId = `slider-${Math.random().toString(36).slice(2, 10)}`;
+}
+
+const currentSlide = 0;
+---
+
+<div
+    id={`${sliderId}--slides`}
+    class="slider-container absolute inset-0"
+    data-slider-id={sliderId}
+    data-current-slide={currentSlide}
+>
+    {
+        slides.map((slide, index) => (
+            <Slide
+                image={slide.image}
+                title={slide.title}
+                index={index}
+                isActive={index === 0}
+            />
+        ))
+    }
+</div>
+
+<!-- Overlay -->
+<div
+    id={`${sliderId}--overlay`}
+    class="absolute inset-0 bg-neutral-50 dark:bg-neutral-950 opacity-70 z-10"
+>
+</div>
+
+<!-- Slide Content -->
+<div
+    id={`${sliderId}--contents`}
+    class="absolute inset-0 z-20 flex items-center justify-center"
+    data-current-slide={currentSlide}
+>
+    <div class="text-center text-white px-4">
+        <h1
+            id={`${sliderId}--title`}
+            class="text-5xl md:text-7xl font-bold mb-4 uppercase tracking-tight transition-all duration-700 ease-out"
+        >
+            {slides[0].title}
+        </h1>
+        {
+            slides[0].description && (
+                <p
+                    id={`${sliderId}--description`}
+                    class="text-xl md:text-2xl font-light transition-all duration-700 ease-out"
+                >
+                    {slides[0].description}
+                </p>
+            )
+        }
+    </div>
+</div>
+
+<Controls
+    sliderId={sliderId}
+    slideCount={slides.length}
+    nextSectionId={nextSectionId}
+/>
+
+<script define:vars={{ slides, sliderId }} is:inline>
+    class SliderController {
+        constructor(slides, sliderId) {
+            this.currentSlide = 0;
+            this.direction = 1;
+            this.autoAdvanceTimer = null;
+            this.autoAdvanceDelay = 8000;
+            this.slides = slides;
+            this.sliderId = sliderId;
+            this.isHovered = false;
+            this.sliderContainer = document.querySelector(
+                `[data-slider-id="${sliderId}"]`,
+            );
+
+            if (!this.sliderContainer) {
+                return;
+            }
+
+            this.slideElements =
+                this.sliderContainer.querySelectorAll(".slide");
+            this.titleElement = document.getElementById(`${sliderId}--title`);
+            this.descriptionElement = document.getElementById(
+                `${sliderId}--description`,
+            );
+
+            this.init();
+        }
+
+        init() {
+            this.startAutoAdvance();
+            this.setupHoverPause();
+            this.setupKeyboardNavigation();
+
+            // Dispatch custom event to notify controls that slider is ready
+            window.dispatchEvent(
+                new CustomEvent(`slider:ready:${this.sliderId}`, {
+                    detail: {
+                        sliderId: this.sliderId,
+                        goToSlide: this.goToSlide.bind(this),
+                        nextSlide: this.nextSlide.bind(this),
+                        previousSlide: this.previousSlide.bind(this),
+                    },
+                }),
+            );
+        }
+
+        goToSlide(index, slideDirection) {
+            if (index === this.currentSlide) return;
+
+            // Determine direction if not provided
+            if (slideDirection === undefined) {
+                const forwardDistance =
+                    index > this.currentSlide
+                        ? index - this.currentSlide
+                        : this.slides.length - this.currentSlide + index;
+                const backwardDistance =
+                    index < this.currentSlide
+                        ? this.currentSlide - index
+                        : this.currentSlide + (this.slides.length - index);
+
+                slideDirection = backwardDistance < forwardDistance ? -1 : 1;
+            }
+
+            this.direction = slideDirection;
+            this.updateSlides(index);
+            this.updateTextContent(index);
+            this.currentSlide = index;
+
+            // Dispatch event for controls to update
+            window.dispatchEvent(
+                new CustomEvent(`slider:change:${this.sliderId}`, {
+                    detail: {
+                        sliderId: this.sliderId,
+                        index,
+                        direction: slideDirection,
+                    },
+                }),
+            );
+        }
+
+        nextSlide() {
+            const newIndex =
+                this.currentSlide === this.slides.length - 1
+                    ? 0
+                    : this.currentSlide + 1;
+            this.goToSlide(newIndex, 1);
+            this.resetAutoAdvance();
+        }
+
+        previousSlide() {
+            const newIndex =
+                this.currentSlide === 0
+                    ? this.slides.length - 1
+                    : this.currentSlide - 1;
+            this.goToSlide(newIndex, -1);
+            this.resetAutoAdvance();
+        }
+
+        updateSlides(index) {
+            this.slideElements.forEach((slide, i) => {
+                slide.style.transition = "none";
+
+                if (i === index) {
+                    // New slide coming in
+                    slide.classList.remove("opacity-0", "z-0");
+                    slide.classList.add("z-[1]");
+
+                    if (this.direction > 0) {
+                        slide.classList.remove(
+                            "translate-x-0",
+                            "-translate-x-full",
+                        );
+                        slide.classList.add("translate-x-full", "opacity-100");
+                    } else {
+                        slide.classList.remove(
+                            "translate-x-0",
+                            "translate-x-full",
+                        );
+                        slide.classList.add("-translate-x-full", "opacity-100");
+                    }
+
+                    void slide.offsetWidth; // Force reflow
+                    slide.style.transition = "";
+
+                    requestAnimationFrame(() => {
+                        slide.classList.remove(
+                            "translate-x-full",
+                            "-translate-x-full",
+                        );
+                        slide.classList.add("translate-x-0");
+                    });
+                } else if (i === this.currentSlide) {
+                    // Current slide going out
+                    slide.classList.remove("z-[1]");
+                    slide.classList.add("z-0");
+                    slide.style.transition = "";
+
+                    if (this.direction > 0) {
+                        slide.classList.remove(
+                            "translate-x-0",
+                            "translate-x-full",
+                        );
+                        slide.classList.add("-translate-x-full", "opacity-0");
+                    } else {
+                        slide.classList.remove(
+                            "translate-x-0",
+                            "-translate-x-full",
+                        );
+                        slide.classList.add("translate-x-full", "opacity-0");
+                    }
+                } else {
+                    // Other slides
+                    slide.classList.remove("opacity-100", "z-[1]");
+                    slide.classList.add("opacity-0", "z-0");
+
+                    const distance =
+                        (i - index + this.slides.length) % this.slides.length;
+                    if (distance <= this.slides.length / 2) {
+                        slide.classList.remove(
+                            "-translate-x-full",
+                            "translate-x-0",
+                        );
+                        slide.classList.add("translate-x-full");
+                    } else {
+                        slide.classList.remove(
+                            "translate-x-full",
+                            "translate-x-0",
+                        );
+                        slide.classList.add("-translate-x-full");
+                    }
+                }
+            });
+        }
+
+        updateTextContent(index) {
+            const animateOut = (element, direction) => {
+                element.style.opacity = "0";
+                element.style.transform = `translateX(${direction > 0 ? "-30px" : "30px"})`;
+            };
+
+            const animateIn = (element, direction) => {
+                element.style.transform = `translateX(${direction > 0 ? "30px" : "-30px"})`;
+                setTimeout(() => {
+                    element.style.opacity = "1";
+                    element.style.transform = "translateX(0)";
+                }, 50);
+            };
+
+            if (this.titleElement)
+                animateOut(this.titleElement, this.direction);
+            if (this.descriptionElement)
+                animateOut(this.descriptionElement, this.direction);
+
+            setTimeout(() => {
+                if (this.titleElement) {
+                    this.titleElement.textContent = this.slides[index].title;
+                    animateIn(this.titleElement, this.direction);
+                }
+                if (this.descriptionElement && this.slides[index].description) {
+                    this.descriptionElement.textContent =
+                        this.slides[index].description;
+                    animateIn(this.descriptionElement, this.direction);
+                }
+            }, 400);
+        }
+
+        startAutoAdvance() {
+            this.autoAdvanceTimer = window.setInterval(() => {
+                this.nextSlide();
+            }, this.autoAdvanceDelay);
+        }
+
+        resetAutoAdvance() {
+            if (this.autoAdvanceTimer) {
+                clearInterval(this.autoAdvanceTimer);
+            }
+            this.startAutoAdvance();
+        }
+
+        setupHoverPause() {
+            this.sliderContainer?.addEventListener("mouseenter", () => {
+                if (this.autoAdvanceTimer) {
+                    clearInterval(this.autoAdvanceTimer);
+                }
+            });
+
+            this.sliderContainer?.addEventListener("mouseleave", () => {
+                this.resetAutoAdvance();
+            });
+        }
+
+        setupKeyboardNavigation() {
+            // Find the parent section element
+            const parentSection = this.sliderContainer?.closest("section");
+
+            // Bind the handler to maintain context
+            const handleKeydown = (e) => {
+                if (!this.isHovered) return;
+
+                if (e.key === "ArrowLeft") {
+                    e.preventDefault();
+                    this.previousSlide();
+                } else if (e.key === "ArrowRight") {
+                    e.preventDefault();
+                    this.nextSlide();
+                }
+            };
+
+            // Track hover state on the parent section instead
+            const hoverTarget = parentSection || this.sliderContainer;
+
+            if (hoverTarget) {
+                hoverTarget.addEventListener("mouseenter", () => {
+                    this.isHovered = true;
+                });
+
+                hoverTarget.addEventListener("mouseleave", () => {
+                    this.isHovered = false;
+                });
+
+                // Add keyboard listener
+                document.addEventListener("keydown", handleKeydown);
+            }
+        }
+    }
+
+    // Initialize slider
+    new SliderController(slides, sliderId);
+</script>

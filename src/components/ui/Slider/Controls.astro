@@ -1,0 +1,151 @@
+---
+import Icon from "../Icon.astro";
+
+interface Props {
+    sliderId: string;
+    slideCount: number;
+    nextSectionId?: string;
+}
+
+const { sliderId, slideCount, nextSectionId } = Astro.props;
+---
+
+<div
+    id={`${sliderId}--controls`}
+    class="absolute bottom-0 left-0 right-0 h-12 bg-neutral-50 dark:bg-neutral-900 z-30 flex items-center justify-between transition-colors duration-300"
+    data-slider-id={sliderId}
+>
+    <!-- Navigation Arrows -->
+    <div class="flex">
+        <button
+            id={`${sliderId}--prev`}
+            class="w-12 h-12 bg-neutral-200 dark:bg-neutral-950 hover:bg-primary dark:hover:bg-primary transition-colors flex items-center justify-center"
+            aria-label="Previous slide"
+        >
+            <Icon
+                name="left"
+                class="w-4 h-4 text-neutral-950 dark:text-neutral-50"
+            />
+        </button>
+        <button
+            id={`${sliderId}--next`}
+            class="w-12 h-12 bg-neutral-200 dark:bg-neutral-950 hover:bg-primary dark:hover:bg-primary transition-colors flex items-center justify-center ml-1"
+            aria-label="Next slide"
+        >
+            <Icon
+                name="right"
+                class="w-4 h-4 text-neutral-950 dark:text-neutral-50"
+            />
+        </button>
+    </div>
+
+    <!-- Slide Indicators -->
+    <ul id={`${sliderId}--indicators`} class="flex space-x-3">
+        {
+            Array.from({ length: slideCount }, (_, index) => (
+                <li>
+                    <button
+                        class={`cursor-pointer slide-indicator w-3 h-3 rounded-sm transition-colors ${index === 0 ? "bg-primary" : "bg-neutral-200 dark:bg-neutral-800 hover:bg-neutral-800 dark:hover:bg-neutral-200"}`}
+                        data-slide={index}
+                        aria-label={`Go to slide ${index + 1}`}
+                    />
+                </li>
+            ))
+        }
+    </ul>
+
+    <!-- Next Section Arrow -->
+    {
+        nextSectionId && (
+            <a
+                href={`#${nextSectionId}`}
+                class="cursor-pointer w-12 h-12 bg-neutral-200 dark:bg-neutral-950 hover:bg-primary dark:hover:bg-primary transition-colors flex items-center justify-center"
+                aria-label="Scroll to next section"
+            >
+                <Icon
+                    name="up"
+                    class="w-6 h-6 text-neutral-800 dark:text-neutral-100"
+                />
+            </a>
+        )
+    }
+</div>
+
+<script define:vars={{ sliderId }}>
+    class ControlsHandler {
+        constructor(sliderId) {
+            this.sliderId = sliderId;
+            const controlsContainer = document.getElementById(
+                `${sliderId}--controls`,
+            );
+            this.indicators =
+                controlsContainer.querySelectorAll(".slide-indicator");
+            this.prevButton = document.getElementById(`${sliderId}--prev`);
+            this.nextButton = document.getElementById(`${sliderId}--next`);
+            this.sliderController = null;
+
+            this.init();
+        }
+
+        init() {
+            // Wait for slider to be ready
+            window.addEventListener(`slider:ready:${this.sliderId}`, (e) => {
+                if (e.detail.sliderId === this.sliderId) {
+                    this.sliderController = e.detail;
+                    this.setupControls();
+                }
+            });
+
+            // Listen for slide changes to update indicators
+            window.addEventListener(`slider:change:${this.sliderId}`, (e) => {
+                if (e.detail.sliderId === this.sliderId) {
+                    this.updateIndicators(e.detail.index);
+                }
+            });
+        }
+
+        setupControls() {
+            // Previous button
+            this.prevButton?.addEventListener("click", () => {
+                this.sliderController?.previousSlide();
+            });
+
+            // Next button
+            this.nextButton?.addEventListener("click", () => {
+                this.sliderController?.nextSlide();
+            });
+
+            // Indicator clicks
+            this.indicators.forEach((indicator, index) => {
+                indicator.addEventListener("click", () => {
+                    this.sliderController?.goToSlide(index);
+                });
+            });
+        }
+
+        updateIndicators(activeIndex) {
+            this.indicators.forEach((indicator, i) => {
+                if (i === activeIndex) {
+                    indicator.classList.remove(
+                        "bg-neutral-200",
+                        "dark:bg-neutral-800",
+                        "hover:bg-neutral-800",
+                        "dark:hover:bg-neutral-200",
+                    );
+                    indicator.classList.add("bg-primary");
+                } else {
+                    indicator.classList.add(
+                        "bg-neutral-200",
+                        "dark:bg-neutral-800",
+                        "hover:bg-neutral-800",
+                        "dark:hover:bg-neutral-200",
+                    );
+                    indicator.classList.remove("bg-primary");
+                }
+            });
+        }
+    }
+
+    // Initialize controls for this slider instance
+    new ControlsHandler(sliderId);
+</script>
