@@ -1,0 +1,51 @@
+---
+import type { SlideItem } from "../../types";
+import Slide from "./Slide.astro";
+
+interface Props {
+    slides: SlideItem[];
+}
+
+const { slides } = Astro.props;
+---
+
+<div class="slider-container absolute inset-0">
+    {
+        slides.map((slide, index) => (
+            <Slide
+                image={slide.image}
+                title={slide.title}
+                index={index}
+                isActive={index === 0}
+            />
+        ))
+    }
+</div>
+
+<!-- Overlay -->
+<div
+    class="absolute inset-0 bg-neutral-50 dark:bg-neutral-950 opacity-70 z-10"
+>
+</div>
+
+<!-- Slide Content -->
+<div class="absolute inset-0 z-20 flex items-center justify-center">
+    <div class="text-center text-white px-4">
+        <h1
+            id="slide-title"
+            class="text-5xl md:text-7xl font-bold mb-4 uppercase tracking-tight transition-all duration-700 ease-out"
+        >
+            {slides[0].title}
+        </h1>
+        {
+            slides[0].description && (
+                <p
+                    id="slide-description"
+                    class="text-xl md:text-2xl font-light transition-all duration-700 ease-out"
+                >
+                    {slides[0].description}
+                </p>
+            )
+        }
+    </div>
+</div>

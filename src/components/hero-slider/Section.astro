@@ -1,0 +1,14 @@
+---
+interface Props {
+    class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+---
+
+<section
+    id="home-slider"
+    class={`relative h-screen overflow-hidden ${className}`}
+>
+    <slot />
+</section>
