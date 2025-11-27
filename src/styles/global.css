@@ -1,6 +1,41 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+/* Tailwind 4 CSS-first configuration */
+@theme {
+    /* Custom colors */
+    --color-primary-light: #E98A8B;
+    --color-primary: #DE5E60;
+    --color-primary-dark: #D04547;
+
+    --color-info-light: #4096ff;
+    --color-info: #1677ff;
+    --color-info-dark: #0958d9;
+
+    --color-success-light: #73d13d;
+    --color-success: #52c41a;
+    --color-success-dark: #389e0d;
+
+    --color-warning-light: #ffd666;
+    --color-warning: #ffc53d;
+    --color-warning-dark: #faad14;
+
+    --color-error-light: #ff7875;
+    --color-error: #ff4d4f;
+    --color-error-dark: #f5222d;
+
+    /* Neutral colors */
+    --color-neutral-50: #f9fafb;
+    --color-neutral-100: #f3f4f6;
+    --color-neutral-200: #e5e7eb;
+    --color-neutral-800: #3C3F45;
+    --color-neutral-900: #2F3238;
+    --color-neutral-950: #26292E;
+
+    /* Font family */
+    --font-sans: 'Titillium Web', sans-serif;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 @layer base {
     html {
