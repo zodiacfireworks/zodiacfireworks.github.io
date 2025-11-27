@@ -1,6 +1,7 @@
 ---
 import type { NavItem } from "../types";
 import Icon from "../components/ui/Icon.astro";
+import ThemeToggler from "../components/ui/ThemeToggler.astro";
 import Footer from "../sections/Footer.astro";
 import "../styles/global.css";
 
@@ -55,18 +56,11 @@ const {
         <Footer />
 
         <!-- Theme Toggle -->
-        <button
+        <ThemeToggler
             id="theme-toggle"
-            class="fixed bottom-24 right-8 bg-neutral-200 hover:bg-neutral-100 text-neutral-950 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-50 w-12 h-12 rounded-md flex items-center justify-center transition-all duration-300 z-40 shadow-lg"
+            class="fixed bottom-24 right-8 z-50"
             aria-label="Toggle theme"
-        >
-            <span id="theme-icon-sun" class="hidden dark:block">
-                <Icon name="sun" class="w-6 h-6" />
-            </span>
-            <span id="theme-icon-moon" class="block dark:hidden">
-                <Icon name="moon" class="w-6 h-6" />
-            </span>
-        </button>
+        />
 
         <!-- Back to Top -->
         <a
@@ -79,14 +73,6 @@ const {
         </a>
 
         <script>
-            // Theme toggle
-            const themeToggle = document.getElementById("theme-toggle");
-            themeToggle?.addEventListener("click", () => {
-                const isDark =
-                    document.documentElement.classList.toggle("dark");
-                localStorage.setItem("theme", isDark ? "dark" : "light");
-            });
-
             // Smooth scroll for anchor links
             document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
                 anchor.addEventListener(

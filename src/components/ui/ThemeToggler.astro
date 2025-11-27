@@ -1,0 +1,36 @@
+---
+import Icon from "./Icon.astro";
+
+export interface Props {
+    id: string;
+    class: string;
+    otherProps?: Record<string, any>;
+}
+
+const {
+    id: elementId = "theme-toggle",
+    class: className = "",
+    otherProps,
+} = Astro.props;
+---
+
+<button
+    id={elementId}
+    class={`${className} bg-neutral-200 hover:bg-neutral-100 text-neutral-950 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-50 w-12 h-12 rounded-md flex items-center justify-center transition-all duration-300 shadow-lg`}
+    {...otherProps}
+>
+    <span id="theme-icon-sun" class="hidden dark:block">
+        <Icon name="sun" class="w-6 h-6" />
+    </span>
+    <span id="theme-icon-moon" class="block dark:hidden">
+        <Icon name="moon" class="w-6 h-6" />
+    </span>
+</button>
+
+<script define:vars={{ elementId }} is:inline>
+    const themeToggle = document.getElementById(elementId);
+    themeToggle?.addEventListener("click", () => {
+        const isDark = document.documentElement.classList.toggle("dark");
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+    });
+</script>
