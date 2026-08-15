@@ -1,0 +1,824 @@
+[
+    {
+        "platform": "GitHub",
+        "name": "ansible-conda",
+        "description": "An Ansible module for managing Python packages via Conda",
+        "url": "https://github.com/zodiacfireworks/ansible-conda",
+        "stars": 0,
+        "language": "Python"
+    },
+    {
+        "platform": "GitHub",
+        "name": "antd-init",
+        "description": ":beginner: Ant Design boilerplate generator.",
+        "url": "https://github.com/zodiacfireworks/antd-init",
+        "stars": 0,
+        "language": "JavaScript"
+    },
+    {
+        "platform": "GitHub",
+        "name": "arduino-serial-monitor",
+        "description": ":snake: :chart_with_upwards_trend: :electric_plug: Sample graphical user interface to real time monitoring sensor signals interfaced with Arduino ",
+        "url": "https://github.com/zodiacfireworks/arduino-serial-monitor",
+        "stars": 9,
+        "language": "C++"
+    },
+    {
+        "platform": "GitHub",
+        "name": "art-work-minimal-hatsune-miku",
+        "description": ":art: One of my favorites wallpapers, converted to SVG by me",
+        "url": "https://github.com/zodiacfireworks/art-work-minimal-hatsune-miku",
+        "stars": 0,
+        "language": null
+    },
+    {
+        "platform": "GitHub",
+        "name": "back-end-lessons",
+        "description": null,
+        "url": "https://github.com/zodiacfireworks/back-end-lessons",
+        "stars": 0,
+        "language": null
+    },
+    {
+        "platform": "GitHub",
+        "name": "beamer-material",
+        "description": null,
+        "url": "https://github.com/zodiacfireworks/beamer-material",
+        "stars": 0,
+        "language": null
+    },
+    {
+        "platform": "GitHub",
+        "name": "Bluemix-App",
+        "description": null,
+        "url": "https://github.com/zodiacfireworks/Bluemix-App",
+        "stars": 0,
+        "language": "JavaScript"
+    },
+    {
+        "platform": "GitHub",
+        "name": "code-day-2017--cellular-automata",
+        "description": ":snake: :bar_chart: :mortar_board: Demo notebooks to give an informal introduction to Cellular Automata",
+        "url": "https://github.com/zodiacfireworks/code-day-2017--cellular-automata",
+        "stars": 3,
+        "language": "Jupyter Notebook"
+    },
+    {
+        "platform": "GitHub",
+        "name": "computer-algebra-with-python",
+        "description": ":snake: :mortar_board: Teaching material for the workshop of Computer Algebra with Python",
+        "url": "https://github.com/zodiacfireworks/computer-algebra-with-python",
+        "stars": 0,
+        "language": null
+    },
+    {
+        "platform": "GitHub",
+        "name": "course--fortran",
+        "description": ":computer: :mortar_board: Teaching materials for my Fortran programming courses",
+        "url": "https://github.com/zodiacfireworks/course--fortran",
+        "stars": 3,
+        "language": "Fortran"
+    },
+    {
+        "platform": "GitHub",
+        "name": "course--fortran-basic",
+        "description": null,
+        "url": "https://github.com/zodiacfireworks/course--fortran-basic",
+        "stars": 0,
+        "language": "Fortran"
+    },
+    {
+        "platform": "GitHub",
+        "name": "course--general-relativity",
+        "description": ":snake: :milky_way: :mortar_board: Course notes and problems for the course of General Relativity",
+        "url": "https://github.com/zodiacfireworks/course--general-relativity",
+        "stars": 0,
+        "language": "Jupyter Notebook"
+    },
+    {
+        "platform": "GitHub",
+        "name": "course--latex",
+        "description": ":octocat: :bar_chart: :cat: ",
+        "url": "https://github.com/zodiacfireworks/course--latex",
+        "stars": 0,
+        "language": "TeX"
+    },
+    {
+        "platform": "GitHub",
+        "name": "course--python-basic",
+        "description": "Curso de introducción al lenguaje de programación python",
+        "url": "https://github.com/zodiacfireworks/course--python-basic",
+        "stars": 1,
+        "language": "Jupyter Notebook"
+    },
+    {
+        "platform": "GitHub",
+        "name": "course--stellar-atmospheres",
+        "description": ":snake: :star: :mortar_board: Course notes and problems for the course of Stellar Atmospheres",
+        "url": "https://github.com/zodiacfireworks/course--stellar-atmospheres",
+        "stars": 0,
+        "language": "Jupyter Notebook"
+    },
+    {
+        "platform": "GitHub",
+        "name": "culqi-challenge",
+        "description": null,
+        "url": "https://github.com/zodiacfireworks/culqi-challenge",
+        "stars": 2,
+        "language": "TypeScript"
+    },
+    {
+        "platform": "GitHub",
+        "name": "cv-parser",
+        "description": "Parse a CV in YAML and generate a html page and pdf files",
+        "url": "https://github.com/zodiacfireworks/cv-parser",
+        "stars": 0,
+        "language": null
+    },
+    {
+        "platform": "GitHub",
+        "name": "data-visualization-with-python",
+        "description": ":snake: :mortar_board: Teaching material for the workshop of Data Visualization with Python",
+        "url": "https://github.com/zodiacfireworks/data-visualization-with-python",
+        "stars": 0,
+        "language": null
+    },
+    {
+        "platform": "GitHub",
+        "name": "django-sample-project",
+        "description": null,
+        "url": "https://github.com/zodiacfireworks/django-sample-project",
+        "stars": 0,
+        "language": "JavaScript"
+    },
+    {
+        "platform": "GitHub",
+        "name": "docker",
+        "description": null,
+        "url": "https://github.com/zodiacfireworks/docker",
+        "stars": 0,
+        "language": "Shell"
+    },
+    {
+        "platform": "GitHub",
+        "name": "docker-stacks",
+        "description": "Opinionated stacks of ready-to-run Jupyter applications in Docker.",
+        "url": "https://github.com/zodiacfireworks/docker-stacks",
+        "stars": 0,
+        "language": "Jupyter Notebook"
+    },
+    {
+        "platform": "GitHub",
+        "name": "docker-wp-nginx-php7",
+        "description": "Dockerfile for WordPress using php7-fpm and Nginx",
+        "url": "https://github.com/zodiacfireworks/docker-wp-nginx-php7",
+        "stars": 0,
+        "language": "Shell"
+    },
+    {
+        "platform": "GitHub",
+        "name": "edit-python.pe",
+        "description": "Allows member profile editing onto python.pe git repository",
+        "url": "https://github.com/zodiacfireworks/edit-python.pe",
+        "stars": 0,
+        "language": "Python"
+    },
+    {
+        "platform": "GitHub",
+        "name": "epidemiologic-calculator",
+        "description": null,
+        "url": "https://github.com/zodiacfireworks/epidemiologic-calculator",
+        "stars": 0,
+        "language": "Python"
+    },
+    {
+        "platform": "GitHub",
+        "name": "epidemiologic-calculator-web",
+        "description": "Consume la api de epidemiologic-calculator",
+        "url": "https://github.com/zodiacfireworks/epidemiologic-calculator-web",
+        "stars": 0,
+        "language": null
+    },
+    {
+        "platform": "GitHub",
+        "name": "exploration--kotlin",
+        "description": null,
+        "url": "https://github.com/zodiacfireworks/exploration--kotlin",
+        "stars": 0,
+        "language": null
+    },
+    {
+        "platform": "GitHub",
+        "name": "fibonacci-sequence",
+        "description": null,
+        "url": "https://github.com/zodiacfireworks/fibonacci-sequence",
+        "stars": 1,
+        "language": "Jupyter Notebook"
+    },
+    {
+        "platform": "GitHub",
+        "name": "flisol-lima-2018",
+        "description": null,
+        "url": "https://github.com/zodiacfireworks/flisol-lima-2018",
+        "stars": 0,
+        "language": "JavaScript"
+    },
+    {
+        "platform": "GitHub",
+        "name": "frontend-lessons",
+        "description": null,
+        "url": "https://github.com/zodiacfireworks/frontend-lessons",
+        "stars": 0,
+        "language": "CSS"
+    },
+    {
+        "platform": "GitHub",
+        "name": "geot",
+        "description": null,
+        "url": "https://github.com/zodiacfireworks/geot",
+        "stars": 0,
+        "language": "C++"
+    },
+    {
+        "platform": "GitHub",
+        "name": "github-educational--github-classroom-and-jupyter-hub",
+        "description": ":octocat: :mortar_board: Teaching material for the workshop of Github Educational, Github Classroom and Jupyter Hub",
+        "url": "https://github.com/zodiacfireworks/github-educational--github-classroom-and-jupyter-hub",
+        "stars": 0,
+        "language": null
+    },
+    {
+        "platform": "GitHub",
+        "name": "gsoc_2020_graphs",
+        "description": "Evaluation for the GSoC 2020 project: Manipulation of massive astronomical data using graphs ",
+        "url": "https://github.com/zodiacfireworks/gsoc_2020_graphs",
+        "stars": 0,
+        "language": null
+    },
+    {
+        "platform": "GitHub",
+        "name": "hackerrank",
+        "description": null,
+        "url": "https://github.com/zodiacfireworks/hackerrank",
+        "stars": 0,
+        "language": null
+    },
+    {
+        "platform": "GitHub",
+        "name": "ibm-quantum-challenge-2024",
+        "description": "For IBM Quantum Challenge 2024 (5-14 June 2024)",
+        "url": "https://github.com/zodiacfireworks/ibm-quantum-challenge-2024",
+        "stars": 0,
+        "language": null
+    },
+    {
+        "platform": "GitHub",
+        "name": "ibm-quantum-challenge-fall-22",
+        "description": "For IBM Quantum Fall Challenge 2022",
+        "url": "https://github.com/zodiacfireworks/ibm-quantum-challenge-fall-22",
+        "stars": 0,
+        "language": null
+    },
+    {
+        "platform": "GitHub",
+        "name": "ICPC-Quantum-Challenge-2021",
+        "description": "Original version of the exercises for the 2021 ICPC Quantum Computing Challenge",
+        "url": "https://github.com/zodiacfireworks/ICPC-Quantum-Challenge-2021",
+        "stars": 0,
+        "language": null
+    },
+    {
+        "platform": "GitHub",
+        "name": "introduction-to-object-oriented-programming-in-python",
+        "description": ":snake: :mortar_board: Teaching material for the workshop of Introduction to Object Oriented Programming with Python",
+        "url": "https://github.com/zodiacfireworks/introduction-to-object-oriented-programming-in-python",
+        "stars": 0,
+        "language": null
+    },
+    {
+        "platform": "GitHub",
+        "name": "introduction-to-programming-in-python",
+        "description": ":snake: :mortar_board: Teaching material for the workshop of Introduction to Programming with Python",
+        "url": "https://github.com/zodiacfireworks/introduction-to-programming-in-python",
+        "stars": 0,
+        "language": "Jupyter Notebook"
+    },
+    {
+        "platform": "GitHub",
+        "name": "ising-model",
+        "description": null,
+        "url": "https://github.com/zodiacfireworks/ising-model",
+        "stars": 0,
+        "language": "Fortran"
+    },
+    {
+        "platform": "GitHub",
+        "name": "jupyter-notebook-and-jupyter-lab",
+        "description": ":snake: :mortar_board: Teaching material for the workshop of Jupyter Notebook and Jupyter Lab",
+        "url": "https://github.com/zodiacfireworks/jupyter-notebook-and-jupyter-lab",
+        "stars": 0,
+        "language": null
+    },
+    {
+        "platform": "GitHub",
+        "name": "jupyterhub-deploy-teaching",
+        "description": "Reference deployment of JupyterHub and nbgrader on a single server",
+        "url": "https://github.com/zodiacfireworks/jupyterhub-deploy-teaching",
+        "stars": 0,
+        "language": "Python"
+    },
+    {
+        "platform": "GitHub",
+        "name": "kroning-penney-model",
+        "description": null,
+        "url": "https://github.com/zodiacfireworks/kroning-penney-model",
+        "stars": 0,
+        "language": "Jupyter Notebook"
+    },
+    {
+        "platform": "GitHub",
+        "name": "language-server-protocol",
+        "description": "Defines a common protocol for language servers.",
+        "url": "https://github.com/zodiacfireworks/language-server-protocol",
+        "stars": 0,
+        "language": null
+    },
+    {
+        "platform": "GitHub",
+        "name": "lark-parser-formatter",
+        "description": null,
+        "url": "https://github.com/zodiacfireworks/lark-parser-formatter",
+        "stars": 0,
+        "language": "Python"
+    },
+    {
+        "platform": "GitHub",
+        "name": "meetups-archivos",
+        "description": "Ppts, códigos y videos de las meetups, data science days, videollamadas y workshops. Data Science Research es una organización sin fines de lucro que busca difundir y descentralizar los conocimientos en Ciencia de Datos e Inteligencia Artificial en el Perú, dando oportunidades a nuevos talentos mediante MeetUps, Workshops y Semilleros de Conocimiento e Investigación.",
+        "url": "https://github.com/zodiacfireworks/meetups-archivos",
+        "stars": 1,
+        "language": "Jupyter Notebook"
+    },
+    {
+        "platform": "GitHub",
+        "name": "meteorological-faker",
+        "description": ":snake: :cloud: :mortar_board: Little Server to show how API and AJAX request works, also can be used to show how to build a toy server with Flask",
+        "url": "https://github.com/zodiacfireworks/meteorological-faker",
+        "stars": 5,
+        "language": "HTML"
+    },
+    {
+        "platform": "GitHub",
+        "name": "molecular-theory-graphed",
+        "description": ":snake: :microscope: :mortar_board: Article written in Jupyter Notebook about Molecular Theory graphed in 2D and 3D.",
+        "url": "https://github.com/zodiacfireworks/molecular-theory-graphed",
+        "stars": 0,
+        "language": "Jupyter Notebook"
+    },
+    {
+        "platform": "GitHub",
+        "name": "NAV2016-Sample",
+        "description": null,
+        "url": "https://github.com/zodiacfireworks/NAV2016-Sample",
+        "stars": 0,
+        "language": "C#"
+    },
+    {
+        "platform": "GitHub",
+        "name": "NAVLoadTest",
+        "description": "Dynamics NAV Load Test Framework & Sample Tests",
+        "url": "https://github.com/zodiacfireworks/NAVLoadTest",
+        "stars": 0,
+        "language": "C#"
+    },
+    {
+        "platform": "GitHub",
+        "name": "newrelic-playground",
+        "description": "Playground to explore the New Relic GraphQL API with Python",
+        "url": "https://github.com/zodiacfireworks/newrelic-playground",
+        "stars": 0,
+        "language": "Jupyter Notebook"
+    },
+    {
+        "platform": "GitHub",
+        "name": "newrelic-xamarin-plugin",
+        "description": "Xamarin plugin to implement New Relic Mobile agents for Android and iOS",
+        "url": "https://github.com/zodiacfireworks/newrelic-xamarin-plugin",
+        "stars": 0,
+        "language": null
+    },
+    {
+        "platform": "GitHub",
+        "name": "nginx-layout",
+        "description": null,
+        "url": "https://github.com/zodiacfireworks/nginx-layout",
+        "stars": 0,
+        "language": "Nginx"
+    },
+    {
+        "platform": "GitHub",
+        "name": "numerical-methods",
+        "description": null,
+        "url": "https://github.com/zodiacfireworks/numerical-methods",
+        "stars": 0,
+        "language": "Jupyter Notebook"
+    },
+    {
+        "platform": "GitHub",
+        "name": "numjs",
+        "description": "Like NumPy, in JavaScript",
+        "url": "https://github.com/zodiacfireworks/numjs",
+        "stars": 0,
+        "language": "JavaScript"
+    },
+    {
+        "platform": "GitHub",
+        "name": "orbital-motion",
+        "description": null,
+        "url": "https://github.com/zodiacfireworks/orbital-motion",
+        "stars": 0,
+        "language": "Jupyter Notebook"
+    },
+    {
+        "platform": "GitHub",
+        "name": "pca-planet-start-recognizer",
+        "description": null,
+        "url": "https://github.com/zodiacfireworks/pca-planet-start-recognizer",
+        "stars": 0,
+        "language": "Jupyter Notebook"
+    },
+    {
+        "platform": "GitHub",
+        "name": "planetary-solar-system",
+        "description": null,
+        "url": "https://github.com/zodiacfireworks/planetary-solar-system",
+        "stars": 0,
+        "language": "C++"
+    },
+    {
+        "platform": "GitHub",
+        "name": "playground",
+        "description": "A collection of simplified learning exercises that use real particle physics data. Primarily organized around the IPython notebook.",
+        "url": "https://github.com/zodiacfireworks/playground",
+        "stars": 0,
+        "language": null
+    },
+    {
+        "platform": "GitHub",
+        "name": "problems-and-solutions",
+        "description": ":snake: :mortar_board: Platform to share problems and solutions in many field of study",
+        "url": "https://github.com/zodiacfireworks/problems-and-solutions",
+        "stars": 0,
+        "language": null
+    },
+    {
+        "platform": "GitHub",
+        "name": "pyker",
+        "description": "Simple poker game in pure python",
+        "url": "https://github.com/zodiacfireworks/pyker",
+        "stars": 4,
+        "language": "Python"
+    },
+    {
+        "platform": "GitHub",
+        "name": "python.pe",
+        "description": "Python Peru",
+        "url": "https://github.com/zodiacfireworks/python.pe",
+        "stars": 0,
+        "language": "Python"
+    },
+    {
+        "platform": "GitHub",
+        "name": "qiskit-translations",
+        "description": "Home of Qiskit documentation translations",
+        "url": "https://github.com/zodiacfireworks/qiskit-translations",
+        "stars": 0,
+        "language": "Shell"
+    },
+    {
+        "platform": "GitHub",
+        "name": "qiskit-tutorials",
+        "description": "A collection of Jupyter notebooks showing how to use the Qiskit SDK",
+        "url": "https://github.com/zodiacfireworks/qiskit-tutorials",
+        "stars": 0,
+        "language": "Jupyter Notebook"
+    },
+    {
+        "platform": "GitHub",
+        "name": "qiskit-vqe-benchmarcking",
+        "description": "A simple set of examples to test VQE with a variety of configurations.",
+        "url": "https://github.com/zodiacfireworks/qiskit-vqe-benchmarcking",
+        "stars": 1,
+        "language": "Jupyter Notebook"
+    },
+    {
+        "platform": "GitHub",
+        "name": "quantum-harmonic-oscillator",
+        "description": ":snake: :cat2: :mortar_board: A set of articles about Quantum Harmonic Oscillator completely writen in Jupyter Notebook",
+        "url": "https://github.com/zodiacfireworks/quantum-harmonic-oscillator",
+        "stars": 7,
+        "language": "Jupyter Notebook"
+    },
+    {
+        "platform": "GitHub",
+        "name": "r-tree--spatial-index",
+        "description": null,
+        "url": "https://github.com/zodiacfireworks/r-tree--spatial-index",
+        "stars": 1,
+        "language": "Jupyter Notebook"
+    },
+    {
+        "platform": "GitHub",
+        "name": "repo2docker",
+        "description": "Turn repositories into Jupyter-enabled Docker images",
+        "url": "https://github.com/zodiacfireworks/repo2docker",
+        "stars": 0,
+        "language": null
+    },
+    {
+        "platform": "GitHub",
+        "name": "resume",
+        "description": "Mi currículo en LaTeX con Awesome CV",
+        "url": "https://github.com/zodiacfireworks/resume",
+        "stars": 3,
+        "language": "TeX"
+    },
+    {
+        "platform": "GitHub",
+        "name": "road-to-gsoc2018--c-lessons",
+        "description": null,
+        "url": "https://github.com/zodiacfireworks/road-to-gsoc2018--c-lessons",
+        "stars": 0,
+        "language": "C"
+    },
+    {
+        "platform": "GitHub",
+        "name": "selinux-policies",
+        "description": "Custom SELinux Policies, useful in web development and testing.",
+        "url": "https://github.com/zodiacfireworks/selinux-policies",
+        "stars": 0,
+        "language": null
+    },
+    {
+        "platform": "GitHub",
+        "name": "solar-cycle-forecast",
+        "description": null,
+        "url": "https://github.com/zodiacfireworks/solar-cycle-forecast",
+        "stars": 0,
+        "language": "Jupyter Notebook"
+    },
+    {
+        "platform": "GitHub",
+        "name": "speakers.peruanos.dev",
+        "description": "Speakers Lists for Peruvian conferences",
+        "url": "https://github.com/zodiacfireworks/speakers.peruanos.dev",
+        "stars": 0,
+        "language": "Ruby"
+    },
+    {
+        "platform": "GitHub",
+        "name": "talk--introduction-to-hpc-with-python",
+        "description": ":snake: :chart_with_upwards_trend: :mortar_board: Teaching material for the workshop of \"Introduction to High Performance Computing with Python\"",
+        "url": "https://github.com/zodiacfireworks/talk--introduction-to-hpc-with-python",
+        "stars": 2,
+        "language": "Jupyter Notebook"
+    },
+    {
+        "platform": "GitHub",
+        "name": "talk--jupyter-notebook",
+        "description": ":snake: :bar_chart: :mortar_board: Demo notebooks to show Jupyter Notebooks capabilities for programming teaching, learning and research",
+        "url": "https://github.com/zodiacfireworks/talk--jupyter-notebook",
+        "stars": 1,
+        "language": "Jupyter Notebook"
+    },
+    {
+        "platform": "GitHub",
+        "name": "topojson-and-geojson-data-from-peru",
+        "description": ":snake: :earth_americas: :mortar_board: Some notes on completing and correcting geojson and topojson data from Peru",
+        "url": "https://github.com/zodiacfireworks/topojson-and-geojson-data-from-peru",
+        "stars": 1,
+        "language": "Jupyter Notebook"
+    },
+    {
+        "platform": "GitHub",
+        "name": "verlet-method-for-mistyblunch",
+        "description": null,
+        "url": "https://github.com/zodiacfireworks/verlet-method-for-mistyblunch",
+        "stars": 0,
+        "language": "HTML"
+    },
+    {
+        "platform": "GitHub",
+        "name": "vscode-c-al",
+        "description": ":octocat: Dynamics NAV C/AL programming language support for Visual Studio Code",
+        "url": "https://github.com/zodiacfireworks/vscode-c-al",
+        "stars": 14,
+        "language": null
+    },
+    {
+        "platform": "GitHub",
+        "name": "zodiacfireworks.github.io",
+        "description": "Personal web portfolio.",
+        "url": "https://github.com/zodiacfireworks/zodiacfireworks.github.io",
+        "stars": 0,
+        "language": "Astro"
+    },
+    {
+        "platform": "GitLab",
+        "name": "Repositorio Ejemplo",
+        "description": "Ejemplo de uso de de",
+        "url": "https://gitlab.com/zodiacfireworks/repositorio_ejemplo",
+        "stars": 0,
+        "language": null
+    },
+    {
+        "platform": "GitLab",
+        "name": "PDE",
+        "description": "",
+        "url": "https://gitlab.com/zodiacfireworks/pde",
+        "stars": 0,
+        "language": null
+    },
+    {
+        "platform": "GitLab",
+        "name": "WeatherLab Kernel Extension",
+        "description": "Weatherlab kernel extension",
+        "url": "https://gitlab.com/zodiacfireworks/weatherlab-extension",
+        "stars": 0,
+        "language": null
+    },
+    {
+        "platform": "GitLab",
+        "name": "WeatherLab",
+        "description": "A JupyterLab extension to check weather conditions.",
+        "url": "https://gitlab.com/zodiacfireworks/weatherlab",
+        "stars": 0,
+        "language": null
+    },
+    {
+        "platform": "GitLab",
+        "name": "GSCO 2020  Swan Rucio Integration",
+        "description": "",
+        "url": "https://gitlab.com/zodiacfireworks/gsco-2020-swan-rucio-integration",
+        "stars": 0,
+        "language": null
+    },
+    {
+        "platform": "GitLab",
+        "name": "breca-brein-challenge",
+        "description": "",
+        "url": "https://gitlab.com/zodiacfireworks/breca-brein-challenge",
+        "stars": 0,
+        "language": null
+    },
+    {
+        "platform": "GitLab",
+        "name": "Resume",
+        "description": "Mi currículo eh LaTeX con Awesome CV",
+        "url": "https://gitlab.com/zodiacfireworks/resume",
+        "stars": 0,
+        "language": null
+    },
+    {
+        "platform": "GitLab",
+        "name": "My Fisrt Gitlab Pages",
+        "description": "A sample proyect to use gitlab pages for first time",
+        "url": "https://gitlab.com/zodiacfireworks/gitlab-pages-test",
+        "stars": 0,
+        "language": null
+    },
+    {
+        "platform": "NPM",
+        "name": "@dynova/newrelic-sb-log-forwarder",
+        "description": "A collection of forwarder functions for Azure Service",
+        "url": "https://www.npmjs.com/package/@dynova/newrelic-sb-log-forwarder",
+        "version": "0.0.4"
+    },
+    {
+        "platform": "NPM",
+        "name": "weatherlab",
+        "description": "A JupyterLab extension to check weather conditions.",
+        "url": "https://www.npmjs.com/package/weatherlab",
+        "version": "0.2.1"
+    },
+    {
+        "platform": "PyPI",
+        "name": "",
+        "description": "Gitlab Open Graph Generator",
+        "url": "https://pypi.org/project/gogg/"
+    },
+    {
+        "platform": "PyPI",
+        "name": "",
+        "description": "Use codemirror2 widget directly in Django models, forms and admin.",
+        "url": "https://pypi.org/project/django-sb-codefield/"
+    },
+    {
+        "platform": "PyPI",
+        "name": "",
+        "description": "Add new pages to the Django admin.",
+        "url": "https://pypi.org/project/django-sb-adminplus/"
+    },
+    {
+        "platform": "PyPI",
+        "name": "",
+        "description": "Wagtail package to render images with rendition in a single API Field.",
+        "url": "https://pypi.org/project/wagtail-sb-imageserializer/"
+    },
+    {
+        "platform": "PyPI",
+        "name": "",
+        "description": "Social Networks settings for wagtail sites.",
+        "url": "https://pypi.org/project/wagtail-sb-socialnetworks/"
+    },
+    {
+        "platform": "PyPI",
+        "name": "",
+        "description": "Tabbed interface for Wagtail's struct blocks with settings fields.",
+        "url": "https://pypi.org/project/wagtail-sb-structblock/"
+    },
+    {
+        "platform": "PyPI",
+        "name": "",
+        "description": "New Relic SDK to interact with Nerdgraph API.",
+        "url": "https://pypi.org/project/newrelic-sb-sdk/"
+    },
+    {
+        "platform": "PyPI",
+        "name": "",
+        "description": "Django migrations without unnecesary change alert triggers.",
+        "url": "https://pypi.org/project/django-sb-simple-migrations/"
+    },
+    {
+        "platform": "PyPI",
+        "name": "",
+        "description": "Lark Parser Language Server.",
+        "url": "https://pypi.org/project/lark-parser-language-server/"
+    },
+    {
+        "platform": "PyPI",
+        "name": "",
+        "description": "New Relic SDK to interact with Nerdgraph API.",
+        "url": "https://pypi.org/project/pygments-sb-nrql/"
+    },
+    {
+        "platform": "PyPI",
+        "name": "",
+        "description": "Customize the Wagtail admin interface from the admin itself.",
+        "url": "https://pypi.org/project/wagtail-sb-admin-interface/"
+    },
+    {
+        "platform": "PyPI",
+        "name": "",
+        "description": "Tabbed interface for Wagtail's struct blocks with settings fields.",
+        "url": "https://pypi.org/project/wagtail-sb-blocks/"
+    },
+    {
+        "platform": "PyPI",
+        "name": "",
+        "description": "Use CodeField from `django-sb-codefield` in Wagtail Admin",
+        "url": "https://pypi.org/project/wagtail-sb-codefield/"
+    },
+    {
+        "platform": "PyPI",
+        "name": "",
+        "description": "FontAwesome for Wagtail Admin.",
+        "url": "https://pypi.org/project/wagtail-sb-fontawesome/"
+    },
+    {
+        "platform": "PyPI",
+        "name": "",
+        "description": "Biblioteca de Culqi en Python",
+        "url": "https://pypi.org/project/culqi-api-python/"
+    },
+    {
+        "platform": "PyPI",
+        "name": "",
+        "description": "Glovo API Python SDK",
+        "url": "https://pypi.org/project/glovo-api-python/"
+    },
+    {
+        "platform": "PyPI",
+        "name": "",
+        "description": "Simple poker game in pure python",
+        "url": "https://pypi.org/project/weatherlab/"
+    },
+    {
+        "platform": "PyPI",
+        "name": "",
+        "description": "Simple poker game in pure python",
+        "url": "https://pypi.org/project/pyker/"
+    },
+    {
+        "platform": "PyPI",
+        "name": "",
+        "description": "Running Box API Python",
+        "url": "https://pypi.org/project/runningbox-api-python/"
+    },
+    {
+        "platform": "Fedora",
+        "name": "Fedora Contributions",
+        "description": "See my profile on Fedora Project Wiki.",
+        "url": "https://fedoraproject.org/wiki/User:Zodiacfireworks"
+    }
+]
