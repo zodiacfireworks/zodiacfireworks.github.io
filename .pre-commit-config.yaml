@@ -1,0 +1,47 @@
+repos:
+  - repo: https://github.com/thibaudcolas/pre-commit-stylelint
+    rev: v14.4.0
+    hooks:
+      - id: stylelint
+        args: [--fix]
+        additional_dependencies:
+          - "stylelint@15.10.2"
+          - "stylelint-config-standard@34.0.0"
+        files: \.(css|scss)$
+        exclude: ^.*\b(dist|node_modules)\b.*$
+
+  - repo: https://github.com/pre-commit/mirrors-eslint
+    rev: "v8.48.0"
+    hooks:
+      - id: eslint
+        args: [--fix]
+        additional_dependencies:
+          - eslint@8.48.0
+          - eslint-config-prettier@9.0.0
+          - eslint-plugin-astro@0.28.0
+        exclude: ^.*\b(dist|node_modules)\b.*$
+
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.36.0
+    hooks:
+      - id: markdownlint
+        args: [--config, .markdownlint.yml]
+        exclude: ^.*\b(dist|node_modules)\b.*$
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+
+  - repo: local
+    hooks:
+      - id: typecheck
+        name: astro check
+        description: Running Astro type checking
+        language: system
+        entry: pnpm run astro check
+        pass_filenames: false
+        exclude: ^.*\b(dist|node_modules)\b.*$
+
+default_stages: [pre-commit, pre-push]
